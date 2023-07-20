@@ -1,0 +1,182 @@
+li {
+    list-style: none;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    color: gray;
+    text-decoration: none;
+}
+
+.icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
+.w {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 15vh;
+    /* background: #fff; */
+    /* border-bottom: 1.2px solid rgb(189, 188, 188); */
+    position: relative;
+    z-index: 3;
+    min-height: calc(100vh);
+}
+
+#live2d-widget {
+    background-color: #f7f7f7 !important
+}
+
+
+@media screen and (max-width:770px) {
+    .w {
+        width: 95%;
+    }
+
+    #navigationMenu {
+        width: 100% !important;
+    }
+
+    .blogContent>.blogItem {
+        width: 100% !important
+    }
+
+    .search>.searchInput {
+        width: 100%;
+        flex: auto !important
+    }
+
+    .detailArticle {
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    .homeMain .main {
+        width: 95% !important
+    }
+
+    .homeMainItem {
+        width: 100% !important;
+        padding: 0 10px !important;
+    }
+}
+
+@media screen and (max-width:480px) {
+    body {
+        font-size: 14.5px !important;
+    }
+
+    .comment .drawerActive {
+        width: 100vw !important;
+        min-width: 300px !important
+    }
+
+    .workActicleItem .articleContent .data {
+        flex-direction: column !important;
+    }
+
+    .workActicleItem .articleContent .data .date {
+        margin-top: 5px;
+    }
+
+    .workActicleItem .articleContent .data .date span {
+        font-style: italic;
+    }
+
+    .userNameForm {
+        width: 80% !important;
+    }
+
+    .scrollTop {
+        bottom: 15px !important;
+        right: 10px !important;
+    }
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 980px) {
+    .workActicleItem .articleImage {
+        display: none;
+    }
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 1320px) {
+    .homeMain .main .content {
+        justify-content: center;
+    }
+
+    .blogContent {
+        justify-content: center;
+    }
+}
+
+/* 移动端适配 */
+@media screen and (min-width: 1600px) {
+    body {
+        font-size: 19px !important
+    }
+}
+
+
+body {
+    background-color: #f7f7f7 !important;
+
+}
+
+/* 解决移动端背景遮不住底部信息 */
+/* .ww {
+    width: 100%;
+    background: #fff;
+    position: relative;
+    z-index: 3;
+    border-bottom: 1.2px solid rgb(189, 188, 188);
+
+} */
+
+/*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
+/* 滚动条整体部分 */
+body::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+/* 滚动条的轨道的两端按钮，允许通过点击微调小方块的位置。 */
+body::-webkit-scrollbar-button {
+    display: none;
+}
+
+/* 滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂直滚动条还是水平滚动条） */
+body::-webkit-scrollbar-thumb {
+    background: rgba(185, 184, 184, 0.3);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* 边角，即两个滚动条的交汇处 */
+body::-webkit-scrollbar-corner {
+    display: none;
+}
+
+/* 两个滚动条的交汇处上用于通过拖动调整元素大小的小控件 */
+body::-webkit-resizer {
+    display: none;
+}

@@ -1,0 +1,90 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #666;
+
+}
+
+ul li {
+    list-style: none;
+}
+
+
+.cont {
+    padding: 20px
+}
+
+.w {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 15vh;
+    background: #fff;
+    border-bottom: 1.2px solid rgb(189, 188, 188);
+    position: relative;
+    z-index: 3;
+}
+
+:root {
+    --light_yellow: rgb(249, 248, 243);
+    --light_purple: rgb(240, 244, 255);
+    --light_green: rgb(238, 252, 239);
+    --light_blue: rgb(230, 245, 250);
+}
+
+.bg {
+    background-color: #faf8f8;
+    border-radius: 5px;
+}
+
+html {
+    overflow: auto;
+    overflow-y: overlay;
+    /* margin-right: calc(100% - 100vw); */
+}
+
+/* element plus */
+:root {
+    --el-menu-hover-bg-color: var(--light_blue);
+    --el-menu-active-color: rgb(84, 112, 198);
+    --el-button-text-color: rgb(84, 112, 198);
+    --el-color-primary: rgb(84, 112, 198);
+
+}
+
+.el-table {
+    border: 1px solid gainsboro;
+    border-bottom: none;
+}
+
+/*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
+/* 滚动条整体部分 */
+body::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+/* 滚动条的轨道的两端按钮，允许通过点击微调小方块的位置。 */
+body::-webkit-scrollbar-button {
+    display: none;
+}
+
+/* 滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂直滚动条还是水平滚动条） */
+body::-webkit-scrollbar-thumb {
+    background: rgba(185, 184, 184, 0.3);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* 边角，即两个滚动条的交汇处 */
+body::-webkit-scrollbar-corner {
+    display: none;
+}
+
+/* 两个滚动条的交汇处上用于通过拖动调整元素大小的小控件 */
+body::-webkit-resizer {
+    display: none;
+}
