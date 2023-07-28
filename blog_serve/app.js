@@ -13,6 +13,15 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
+const https = require("https");
+const fs = require("fs");
+
+// Configuare https
+const httpsOption = {
+  key: fs.readFileSync("./https/privkey.key"),
+  cert: fs.readFileSync("./https/fullchain.pem"),
+};
+
 // 跨域访问
 app.use(cors());
 // 静态资源托管
@@ -21,6 +30,11 @@ app.use(express.static("./assets"));
 app.use(router);
 // 处理错误中间件
 app.use(errorHandler());
-app.listen(3000, () => {
+
+const server = https.createServer(httpsOption, app);
+server.listen(3000, () => {
   console.log("server is running");
 });
+// server.listen(443,function(){
+// console.log('app is running at port 80');
+// })

@@ -68,6 +68,26 @@ import { ElMessage, type FormInstance, type FormRules } from "element-plus";
 import cache from "@/utils/cache";
 import { useRouter, useRoute, onBeforeRouteLeave } from "vue-router";
 
+import axios from "axios";
+axios
+  .get("https://qyapi.weixin.qq.com/cgi-bin/gettoken", {
+    params: {
+      corpid: "wwcbd3fd2e2aa98f3d",
+      corpsecret: "QuWmHA0a_5OJyqBbnzOYvIQw_-5PqzO3oKa6M_P83yk",
+    },
+    headers: {
+      "Content-Type": "Access-Control-Allow-Origin", // 设置请求头的Content-Type
+    },
+  })
+  .then(function (response) {
+    console.log("成功", response);
+    console.log(response.data);
+  })
+  .catch(function (error) {
+    console.log("失败", error);
+    console.log(error);
+  });
+
 // let background = ref<LoginBackground>({ imgSrc: "", title: "" });
 const formRef = ref<FormInstance>();
 const router = useRouter();
@@ -166,7 +186,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   document.removeEventListener("keyup", keyEvent);
 });
-
 </script>
 
 <style scoped lang="scss">

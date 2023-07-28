@@ -23,6 +23,10 @@ export default defineNuxtConfig({
           name: "keywords",
           content: "个人博客,个人博客搭建,nuxt3,typescript,vue3,nodejs",
         },
+        {
+          "http-equiv": "Content-Security-Policy",
+          content: "upgrade-insecure-requests",
+        },
       ],
       link: [
         {
