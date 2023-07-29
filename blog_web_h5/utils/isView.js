@@ -1,9 +1,4 @@
-/*
- * @Author: sun
- * @Date: 2023-01-07 08:58:02
- * @LastEditTime: 2023-01-07 11:22:46
- * @Description: Do not edit
- */
+// 图片懒加载
 export function isView(ref) {
   const isInSight = (item) => {
     const bound = item.getBoundingClientRect();

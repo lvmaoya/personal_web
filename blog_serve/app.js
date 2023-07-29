@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 const https = require("https");
+const http = require("http");
 const fs = require("fs");
 
 // Configuare https
@@ -31,7 +32,9 @@ app.use(router);
 // 处理错误中间件
 app.use(errorHandler());
 
-const server = https.createServer(httpsOption, app);
+// https需要补充相应pem文件
+// const server = https.createServer(httpsOption, app);
+const server = http.createServer(app);
 server.listen(3000, () => {
   console.log("server is running");
 });

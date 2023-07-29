@@ -17,4 +17,4 @@
    进入到相关文件夹，安装相关依赖：npm install
    serve端执行命令：node app.js 或者 nodemon app.js 
    前端：npm run dev
-
+   notice：node服务端支持https,如果需要发布https则需要在https文件夹中补充相应文件,并修改app.js中相关https配置
