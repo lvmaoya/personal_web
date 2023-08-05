@@ -5,7 +5,7 @@
  * @Description: Do not edit
 -->
 <template>
-  <div>
+  <div id="container">
     <NavBar></NavBar>
     <slot></slot>
   </div>
@@ -13,4 +13,6 @@
 
 <script setup></script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>

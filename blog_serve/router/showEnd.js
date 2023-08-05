@@ -23,6 +23,8 @@ router.post("/searchBlog", showEndCtrl.searchBlog);
 
 // 最近更新
 router.post("/getRecentArticle", showEndCtrl.getRecentArticle);
+// 所有文章的最近更新
+router.get("/getRecentAll", showEndCtrl.getRecentAll);
 router.post("/getHotArticle", showEndCtrl.getHotArticle);
 router.post("/getArticleByCategory", showEndCtrl.getArticleByCategory);
 

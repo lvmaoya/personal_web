@@ -6,7 +6,7 @@
  */
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  css: ["~/assets/css/normalize.css", "~/assets/css/reset.css"],
+  css: ["~/assets/css/normalize.css", "~/assets/css/reset.css", "~/assets/css/flex.css"],
   app: {
     buildAssetsDir: "/hello/",
     head: {
@@ -38,6 +38,7 @@ export default defineNuxtConfig({
       script: [
         { src: "/cat/l2dwidget-client.js", async: true },
         { src: "/icon/iconfont.js", async: true },
+        // { src: "/flexible/index.js" },
       ],
       noscript: [{ children: "Javascript is required" }],
       title: "lvmaoya",

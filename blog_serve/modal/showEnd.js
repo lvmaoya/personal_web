@@ -137,6 +137,19 @@ exports.getRecentArticleDB = (req, res) => {
     });
   });
 };
+// 获取最近更新的所有文章6篇
+exports.getRecentAllDB = (req, res) => {
+  const params = "SELECT  * FROM blog WHERE is_privacy = 1 and  status = 0  order by published_time desc LIMIT 1,6;";
+  return new Promise((resolve) => {
+    connection.query(params, function (err, rows, fields) {
+      if (err) {
+        resolve(err);
+      } else {
+        resolve(rows);
+      }
+    });
+  });
+};
 exports.getHotArticleDB = (req, res) => {
   const currentPage = req.body.currentPage;
   const size = req.body.size;

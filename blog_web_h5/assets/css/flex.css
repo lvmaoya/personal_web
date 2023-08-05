@@ -1,0 +1,31 @@
+#container .inner {
+    border-left-width: 20px;
+    border-right-width: 20px;
+    border-color: transparent;
+    border-style: solid;
+    margin: 0 auto;
+    max-width: 2000px;
+    box-sizing: border-box;
+
+}
+
+@media (min-width: 768px) {
+    #container .inner {
+        border-left-width: 50px;
+        border-right-width: 50px;
+    }
+}
+
+@media (min-width: 1024px) {
+    #container .inner {
+        border-left-width: 70px;
+        border-right-width: 70px;
+    }
+}
+
+@media (min-width: 1400px) {
+    #container .inner {
+        border-left-width: 100px;
+        border-right-width: 100px;
+    }
+}

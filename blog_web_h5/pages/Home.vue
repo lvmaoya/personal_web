@@ -5,13 +5,10 @@
  * @Description: Do not edit
 -->
 <template>
-  <ClientOnly>
-    <CanvasBg></CanvasBg>
-  </ClientOnly>
   <HomeBody @startClick="handleStartClick"></HomeBody>
-  <div ref="homeMainRef">
-    <HomeMain :thingList="(thingList as Array<ThingType>)"></HomeMain>
-  </div>
+  <!-- <div ref="homeMainRef"> -->
+  <HomeMain :thingList="(thingList as Array<ThingType>)"></HomeMain>
+  <!-- </div> -->
   <Footer>
     <p><a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备2022008799号-1</a></p>
   </Footer>
@@ -21,13 +18,13 @@ import { type ThingType } from "@/composables/index";
 const thingList = ref<Array<ThingType>>();
 thingList.value = (await getIntersetThingList()).data;
 // 点击开始滚动
-const homeMainRef = ref();
-const handleStartClick = () => {
-  window.scrollTo({
-    top: homeMainRef.value.offsetTop - 170,
-    behavior: "smooth",
-  });
-};
+// const homeMainRef = ref();
+// const handleStartClick = () => {
+//   window.scrollTo({
+//     top: homeMainRef.value.offsetTop - 170,
+//     behavior: "smooth",
+//   });
+// };
 </script>
 
 <style scoped lang="scss"></style>

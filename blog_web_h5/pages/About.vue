@@ -5,9 +5,6 @@
  * @Description: Do not edit
 -->
 <template>
-  <ClientOnly>
-    <CanvasBg></CanvasBg>
-  </ClientOnly>
   <div class="aboutView">
     <div class="w">
       <div class="introduce">

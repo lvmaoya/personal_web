@@ -18,7 +18,7 @@ p {
 }
 
 a {
-    color: gray;
+    color: #999;
     text-decoration: none;
 }
 
@@ -68,21 +68,12 @@ a {
         padding: 0 10px;
         box-sizing: border-box;
     }
-
-    .homeMain .main {
-        width: 95% !important
-    }
-
-    .homeMainItem {
-        width: 100% !important;
-        padding: 0 10px !important;
-    }
 }
 
 @media screen and (max-width:480px) {
-    body {
+    /* body {
         font-size: 14.5px !important;
-    }
+    } */
 
     .comment .drawerActive {
         width: 100vw !important;
@@ -120,9 +111,6 @@ a {
 
 /* 移动端适配 */
 @media screen and (max-width: 1320px) {
-    .homeMain .main .content {
-        justify-content: center;
-    }
 
     .blogContent {
         justify-content: center;
@@ -136,10 +124,14 @@ a {
     }
 }
 
+@font-face {
+    font-family: 'Josefin Sans';
+    src: url('../font/JosefinSans-Regular.ttf');
+}
 
 body {
     background-color: #f7f7f7 !important;
-
+    font-family: 'Josefin Sans', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft Yahei", "WenQuanYi Micro Hei", Arial, Verdana, sans-serif;
 }
 
 /* 解决移动端背景遮不住底部信息 */

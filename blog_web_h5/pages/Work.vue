@@ -5,9 +5,6 @@
  * @Description: Do not edit
 -->
 <template>
-  <ClientOnly>
-    <CanvasBg></CanvasBg>
-  </ClientOnly>
   <div class="w">
     <Search :isSearchInputFocus="isSearchInputFocus" @search-btn-click="handleSearchBtnClick"></Search>
     <WorkArticleCategory @tag-click="tagClick"></WorkArticleCategory>

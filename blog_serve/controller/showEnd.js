@@ -188,6 +188,29 @@ exports.getRecentArticle = async (req, res, next) => {
     next(error);
   }
 };
+exports.getRecentAll = async (req, res, next) => {
+  try {
+    const dataList = await articleModal.getRecentAllDB(req, res);
+    if (dataList.code) {
+      res.status(300).json({
+        code: 1,
+        message: "error",
+        data: dataList,
+      });
+    } else {
+      res.status(200).json({
+        code: 0,
+        message: "success",
+        data: {
+          total: 6,
+          list: dataList,
+        },
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 exports.getHotArticle = async (req, res, next) => {
   try {
     const dataList = await articleModal.getHotArticleDB(req, res);
@@ -268,7 +291,7 @@ exports.searchArticle = async (req, res, next) => {
       });
     } else {
       res.status(200).json({
-        code:0,
+        code: 0,
         message: "success",
         data: {
           total: searchResultData[1][0].total,

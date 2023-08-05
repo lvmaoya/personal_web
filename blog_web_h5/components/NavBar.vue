@@ -1,84 +1,117 @@
-<!--
- * @Author: sun
- * @Date: 2022-12-23 21:21:35
- * @LastEditTime: 2023-03-06 19:23:10
- * @Description: Do not edit
--->
 <template>
-  <header>
-    <div class="nav-bar">
-      <div class="logo">
-        <Logo></Logo>
-      </div>
-      <nav class="menu">
+  <header :class="{ scrolled: isScrolled }">
+    <div class="nav-bar inner">
+      <Logo></Logo>
+      <nav class="menu activeMenu">
         <ul>
-          <li><NuxtLink to="/home" active-class="active-nav-link" @click.stop>首页</NuxtLink></li>
-          <li><NuxtLink to="/work" active-class="active-nav-link" @click.stop>技术</NuxtLink></li>
-          <li><NuxtLink to="/blog" active-class="active-nav-link" @click.stop>随笔</NuxtLink></li>
-          <li><NuxtLink to="/about" active-class="active-nav-link" @click.stop>关于</NuxtLink></li>
+          <li>
+            <NuxtLink to="/home" active-class="active-nav-link" @click.stop>Home</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/work" active-class="active-nav-link" @click.stop>Study</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/blog" active-class="active-nav-link" @click.stop>Blog</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/about" active-class="active-nav-link" @click.stop>About</NuxtLink>
+          </li>
         </ul>
       </nav>
+      <NavMiniScreenPage class="miniScreen activeMiniScreen"></NavMiniScreenPage>
     </div>
   </header>
 </template>
 
 <script setup>
+import { throttle } from "@/utils/throttle"
+const isScrolled = ref(false)
+
 onMounted(() => {
-  const header = document.querySelector("header");
-  var scrollFunc = function (e) {
-    if (e.wheelDelta > 0 || e.detail) {
-      //IE/Opera/Chrome和Firefox
-      header.style.top = "0";
+  window.addEventListener('scroll', throttle(function () {
+    let bodyScrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    if (bodyScrollTop) {
+      isScrolled.value = true
     } else {
-      header.style.top = "-4.5em";
+      isScrolled.value = false
     }
-  };
-  /*注册事件*/
-  if (document.addEventListener) {
-    document.addEventListener("DOMMouseScroll", scrollFunc, false);
-  } //W3C
-  window.onmousewheel = document.onmousewheel = scrollFunc; //IE/Opera/Chrome
+  }, 100))
 });
 </script>
 
 <style lang="scss" scoped>
 header {
-  position: sticky;
+  position: fixed;
   top: 0px;
   width: 100%;
   z-index: 518;
-  background-color: #fff;
-  border-bottom: 1.2px solid rgb(189, 188, 188);
+  padding: 35px 0;
+  background: transparent;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+
   display: flex;
   justify-content: center;
-  transition: top 0.5s ease-out;
+  transition: padding 0.4s, background 0.2s, box-shadow;
+
   .nav-bar {
-    width: 80%;
-    min-width: 375px;
-    padding: 1.5em 0;
+    width: 100%;
+    height: 100%;
     display: flex;
-    .logo {
-      margin-left: 10px;
-    }
+
     nav {
       flex: 1;
       display: flex;
       justify-content: flex-end;
+      align-items: center;
+
       ul {
         display: flex;
+
         li {
           max-width: 70px;
           padding: 0 10px;
+
           a {
             font-size: 0.875em;
-            color: #313131;
+            transition: color .2s linear;
+
+            &:hover {
+              color: #303030;
+            }
           }
         }
       }
     }
+
+    .miniScreen {
+      display: none;
+    }
   }
+
   .active-nav-link {
-    color: #eb5055 !important;
+    color: #303030 !important;
+  }
+}
+
+.scrolled {
+  padding: 23px 0;
+  background: #fff;
+  -webkit-box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 450px) {
+  header .nav-bar .activeMiniScreen {
+    display: flex;
+  }
+
+  header .nav-bar .activeMenu {
+    display: none;
+  }
+
+  header {
+    padding: 23px 0;
   }
 }
 </style>

@@ -5,9 +5,6 @@
  * @Description: Do not edit
 -->
 <template>
-  <ClientOnly>
-    <CanvasBg></CanvasBg>
-  </ClientOnly>
   <div class="w">
     <div class="searchContent">
       <Search @searchBtnClick="handleSearchBtnClick"></Search>

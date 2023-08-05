@@ -14,7 +14,7 @@
     <div class="introduce">I'am a frontEnd developer</div>
     <div class="button">
       <!-- <a href="javascript:;" data-title="click me to start" class="buttonA"></a> -->
-      <TdButton @start-click="handleStartClick"></TdButton>
+      <!-- <TdButton @start-click="handleStartClick"></TdButton> -->
     </div>
   </div>
 </template>
@@ -50,20 +50,22 @@ const handleStartClick = () => {
 <style lang="scss" scoped>
 .homeBg {
   width: 100%;
-  height: calc(100vh - 4.4em);
+  height: 100vh;
   color: black;
   position: relative;
   z-index: 4;
   /* display: flex; */
   /* align-items: center; */
   text-align: center;
-  padding-top: 31vh;
+  padding-top: 38vh;
   box-sizing: border-box;
+
   .welcomeStr {
     font-size: 2em;
     font-family: Georgia, "Helvetica Neue", Times, serif;
     user-select: none;
   }
+
   .introduce {
     font-family: Georgia, "Helvetica Neue", Times, serif;
     font-style: italic;
@@ -71,8 +73,10 @@ const handleStartClick = () => {
     padding: 15px;
     user-select: none;
   }
+
   .button {
     padding-top: 100px;
+
     .buttonA {
       position: relative;
       display: inline-block;
