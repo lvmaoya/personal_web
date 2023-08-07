@@ -5,9 +5,25 @@
  * @Description: Do not edit
 -->
 <template>
-  <div class="blogContent">
-    <BlogItem v-for="item in props.blogList" :key="item.article_id" :blogItem="item"></BlogItem>
-  </div>
+  <ul>
+    <!-- <BlogItem :blogItem="item"></BlogItem> -->
+    <li @click.stop="handleArticleClick(item.article_id)" v-for="item in props.blogList" :key="item.article_id">
+      <div class="img">
+        <a href="javascript:;"><img :src="item.cover_image" alt="" /></a>
+      </div>
+      <div class="articleDetail">
+        <div class="title">
+          <span class="titleContent">{{ item.title }}</span>
+        </div>
+        <div class="date">
+          <span> {{ formatTime(new Date(item.published_time)) }}</span>
+        </div>
+        <div class="description">
+          {{ item.description }}
+        </div>
+      </div>
+    </li>
+  </ul>
 </template>
 
 <script setup lang="ts">
@@ -17,15 +33,141 @@ const props = defineProps({
     type: Object,
   },
 });
+const router = useRouter();
+const handleArticleClick = (id: number) => {
+  router.push({
+    path: "detail/" + id,
+  });
+};
 </script>
 
 <style scoped lang="scss">
-.blogContent {
+ul {
   width: 100%;
   padding-top: 3em;
   padding-bottom: 50px;
   display: flex;
   // justify-content: center;
   flex-wrap: wrap;
+
+  li {
+    width: 100%;
+
+    .img {
+      width: 100%;
+      height: calc(19vw * 9 / 16);
+      min-height: 170px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        vertical-align: bottom;
+      }
+    }
+
+    .articleDetail {
+      padding-top: 2em;
+      padding-right: 15px;
+    }
+
+    .title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-bottom: 0.1em;
+      margin: 0 0 1em;
+      // cursor: pointer;
+      box-sizing: border-box;
+
+      .titleContent {
+        cursor: pointer;
+        font-size: 1.1em;
+        font-weight: 500;
+        color: #4d4d4d;
+        border-bottom: 2px solid #f7f7f7;
+        transition: all 0.2s;
+
+        //   box-sizing: border-box;
+        //   display: block;
+        //   width: fit-content;
+        &:hover {
+          border-bottom: 2px solid #4d4d4d;
+        }
+      }
+    }
+
+    .date {
+      padding: 0 0 1.4em;
+
+      span {
+        display: block;
+        font-style: italic;
+        font-size: 0.875em;
+        font-weight: 400;
+        color: #555666;
+      }
+    }
+
+    .description {
+      font-size: 0.875em;
+      line-height: 1.4em;
+      font-weight: 400;
+      padding: 0 0 1.4em;
+      color: #555666;
+      overflow: hidden;
+      white-space: normal;
+      word-break: break-word;
+
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 5;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  ul li {
+    width: calc(50% - 15px);
+    margin: 0 30px 20px 0;
+
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  ul li {
+    width: calc(33.33333% - 15px);
+    margin: 0 20px 20px 0;
+    padding: 0;
+
+    &:nth-child(2n) {
+      margin-right: 20px;
+    }
+
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+  }
+}
+
+@media (min-width: 1400px) {
+  ul li {
+    width: calc(25% - 15px);
+
+    &:nth-child(2n) {
+      margin-right: 20px;
+    }
+
+    &:nth-child(3n) {
+      margin-right: 20px;
+    }
+
+    &:nth-child(4n) {
+      margin-right: 0;
+    }
+  }
 }
 </style>

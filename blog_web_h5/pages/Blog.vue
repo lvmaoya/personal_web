@@ -5,19 +5,17 @@
  * @Description: Do not edit
 -->
 <template>
-  <div class="w">
-    <div class="searchContent">
-      <Search @searchBtnClick="handleSearchBtnClick"></Search>
+  <div class="content">
+    <div class="inner">
+      <div class="searchContent">
+        <Search @searchBtnClick="handleSearchBtnClick"></Search>
+      </div>
+      <BlogContent :blogList="blogList"></BlogContent>
+      <NoData v-if="total === 0"></NoData>
     </div>
-    <BlogContent :blogList="blogList"></BlogContent>
-    <NoData v-if="total === 0"></NoData>
+    <Pagination @currentPageChange="handleCurrentPageChange" :current-page="currentPage" :total="total" :size="size">
+    </Pagination>
   </div>
-  <Pagination
-    @currentPageChange="handleCurrentPageChange"
-    :current-page="currentPage"
-    :total="total"
-    :size="size"
-  ></Pagination>
   <Footer></Footer>
 </template>
 
@@ -67,7 +65,15 @@ const handleSearchBtnClick = async (searchData: searchConfigType) => {
 </script>
 
 <style scoped lang="scss">
+.content {
+  margin-bottom: 258px;
+  background-color: #fff;
+  position: relative;
+  z-index: 6;
+}
+
 .searchContent {
   margin-bottom: 11vh;
+  padding-top: 19vh;
 }
 </style>

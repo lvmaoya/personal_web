@@ -23,7 +23,9 @@ export interface ThingType {
 export const getIntersetThingList = () => {
   return Http.get<ResponseConfig<Array<ThingType>>>("/getIntersetThingList");
 };
-
+export function getRecentUpdate() {
+  return Http.get<ResponseConfig<ArticleListResType>>("/getRecentUpdate");
+}
 // 技术文章页
 export interface GetArticleListConfig {
   currentPage: number;
@@ -87,7 +89,7 @@ export interface ArticleResType {
   title: string;
   published_time: string;
   pageview: number;
-  description?:""
+  description?: "";
 }
 
 export interface DianZanResType {

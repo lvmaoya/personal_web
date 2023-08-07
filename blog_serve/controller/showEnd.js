@@ -202,7 +202,7 @@ exports.getRecentAll = async (req, res, next) => {
         code: 0,
         message: "success",
         data: {
-          total: 6,
+          total: 5,
           list: dataList,
         },
       });

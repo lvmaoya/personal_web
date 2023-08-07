@@ -10,7 +10,7 @@ const handleLogoClick = async () => {
 
 <style lang="scss" scoped>
 .logo {
-  font-size: 1.2em;
+  font-size: 20px;
   cursor: pointer;
   color: #303030;
   user-select: none;

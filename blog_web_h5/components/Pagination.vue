@@ -6,7 +6,7 @@
 -->
 <template>
   <div class="pagination" ref="paginationRef">
-    <div class="content">
+    <div class="content inner">
       <div class="older" @click.stop="handleCurrentPageChange(0)" :class="{ nothing: haveLast() }">
         <span>
           <svg class="icon" aria-hidden="true">
@@ -81,9 +81,9 @@ const handleCurrentPageChange = (val: number) => {
   border-bottom: 1px solid gray;
   position: relative;
   z-index: 56;
+
   .content {
     margin: 0 auto;
-    width: 80%;
     height: 90px;
     line-height: 90px;
     display: flex;
@@ -94,6 +94,7 @@ const handleCurrentPageChange = (val: number) => {
       cursor: pointer;
       user-select: none;
     }
+
     .nothing {
       height: 0;
       overflow: hidden;

@@ -1,14 +1,9 @@
-<!--
- * @Author: sun
- * @Date: 2022-12-29 20:07:59
- * @LastEditTime: 2023-02-17 15:27:31
- * @Description: Do not edit
--->
+
 <template>
   <div></div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 const config = {
   model: {
     jsonPath: "../hijiki/assets/hijiki.model.json", // 加载模型的json路径
@@ -31,11 +26,38 @@ const config = {
     opacityOnHover: 1, // 鼠标移上透明度
   },
 };
-onBeforeMount(() => {
-  if (document.body.clientWidth >= 480) {
-    L2Dwidget.init(config);
+const init = async () => {
+  const canvas = document.querySelector("#live2d-widget > canvas")
+  if (document.body.clientWidth > 1248) {
+    canvas.style.transform = 'scale(0.8) translate(20px,50px)'
+    canvas.style.display = "block"
+
+  } else if (document.body.clientWidth > 1024) {
+    // scale(0.5) translate(70px, 156px)
+    // scale(0.8) translate(20px, 43px)
+    canvas.style.transform = 'scale(0.8) translate(20px,50px)'
+    canvas.style.display = "block"
+
+  } else if (document.body.clientWidth > 480) {
+    canvas.style.transform = 'scale(0.7) translate(35px,75px)'
+    canvas.style.display = "block"
+
+  } else {
+    canvas.style.display = "none"
   }
-});
+}
+
+onMounted(async () => {
+  L2Dwidget.init(config);
+  setTimeout(() => {
+    if (document.querySelector("#live2d-widget > canvas")) {
+      init()
+    }
+  }, 0);
+  window.addEventListener('resize', async () => {
+    init()
+  })
+})
 </script>
 
 <style scoped></style>

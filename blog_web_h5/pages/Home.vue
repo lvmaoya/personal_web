@@ -5,7 +5,7 @@
  * @Description: Do not edit
 -->
 <template>
-  <HomeBody @startClick="handleStartClick"></HomeBody>
+  <HomeBody></HomeBody>
   <!-- <div ref="homeMainRef"> -->
   <HomeMain :thingList="(thingList as Array<ThingType>)"></HomeMain>
   <!-- </div> -->

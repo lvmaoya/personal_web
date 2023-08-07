@@ -6,16 +6,14 @@
 -->
 <template>
   <div class="homeBg">
-    <div>
-      <span class="welcomeStr">
-        {{ welcomeStr }}
-      </span>
-    </div>
+    <span class="welcomeStr">
+      {{ welcomeStr }}
+    </span>
     <div class="introduce">I'am a frontEnd developer</div>
-    <div class="button">
-      <!-- <a href="javascript:;" data-title="click me to start" class="buttonA"></a> -->
-      <!-- <TdButton @start-click="handleStartClick"></TdButton> -->
-    </div>
+    <!-- <div class="button"> -->
+    <!-- <a href="javascript:;" data-title="click me to start" class="buttonA"></a> -->
+    <!-- <TdButton @start-click="handleStartClick"></TdButton> -->
+    <!-- </div> -->
   </div>
 </template>
 
@@ -39,9 +37,9 @@ let welcomeStr = ref("Welcome to Sun's blog!");
 //   }
 // };
 
-const handleStartClick = () => {
-  emit("startClick");
-};
+// const handleStartClick = () => {
+//   emit("startClick");
+// };
 // onBeforeMount(() => {
 // typing();
 // });
@@ -53,12 +51,13 @@ const handleStartClick = () => {
   height: 100vh;
   color: black;
   position: relative;
-  z-index: 4;
+  z-index: 6;
   /* display: flex; */
   /* align-items: center; */
   text-align: center;
   padding-top: 38vh;
   box-sizing: border-box;
+  background-color: #fff;
 
   .welcomeStr {
     font-size: 2em;

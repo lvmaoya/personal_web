@@ -49,23 +49,14 @@ onMounted(() => {
   box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 40;
-  margin-bottom: 200px;
+  margin-bottom: 255px;
+  background-color: #fff;
 
   ul {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-
-    // justify-content: center;
-    // .homeMainItem {
-    //   position: relative;
-    //   z-index: 40;
-    //   width: 33.3%;
-    //   box-sizing: border-box;
-    //   margin-bottom: 20px;
-    //   padding: 0px 10px;
-    //   min-width: 350px;
-    //   cursor: pointer;
+    cursor: pointer;
 
     a {
       display: block;

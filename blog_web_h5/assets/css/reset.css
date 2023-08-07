@@ -42,7 +42,7 @@ a {
 }
 
 #live2d-widget {
-    background-color: #f7f7f7 !important
+    background-color: #fff !important
 }
 
 
@@ -130,7 +130,6 @@ a {
 }
 
 body {
-    background-color: #f7f7f7 !important;
     font-family: 'Josefin Sans', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft Yahei", "WenQuanYi Micro Hei", Arial, Verdana, sans-serif;
 }
 
