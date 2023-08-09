@@ -1,9 +1,3 @@
-/*
- * @Author: sun
- * @Date: 2022-12-24 22:02:05
- * @LastEditTime: 2023-01-03 20:36:07
- * @Description: Do not edit
- */
 // 封装请求
 
 import { _AsyncData } from "nuxt/dist/app/composables/asyncData";
@@ -15,10 +9,15 @@ export interface ResponseConfig<T> {
   data: T;
 }
 
-import  baseURL  from "./base-config";
+import baseURL from "./base-config";
 const fetch = (url: string, options?: any): Promise<any> => {
   const { $router } = useNuxtApp();
-  const reqUrl = baseURL + url;
+  let reqUrl = "";
+  if (/^(ftp|http|https):\/\/[^ "]+$/.test(url)) {
+    reqUrl = url;
+  } else {
+    reqUrl = baseURL + url;
+  }
   return new Promise((resolve, reject) => {
     useFetch(reqUrl, { ...options })
       .then(({ data, error }: _AsyncData<any, any>) => {

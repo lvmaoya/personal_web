@@ -17,6 +17,10 @@
 import { type ThingType } from "@/composables/index";
 const thingList = ref<Array<ThingType>>();
 thingList.value = (await getIntersetThingList()).data;
+
+onMounted(async () => {
+
+})
 // 点击开始滚动
 // const homeMainRef = ref();
 // const handleStartClick = () => {

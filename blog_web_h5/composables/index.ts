@@ -1,9 +1,4 @@
-/*
- * @Author: sun
- * @Date: 2022-12-24 22:10:09
- * @LastEditTime: 2023-01-03 14:22:26
- * @Description: Do not edit
- */
+
 import Http from "@/http/index";
 // export const getIntersetThingList = () => {
 //   return Http.get<any>("/getIntersetThingList");

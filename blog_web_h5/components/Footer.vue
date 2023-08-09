@@ -38,14 +38,19 @@
         <div class="musicContent">
           <div class="musicTitle">hello</div>
           <ul class="control">
-            <li><a href=""></a></li>
-            <li><a href=""></a></li>
-            <li><a href=""></a></li>
+            <li><a href="javascript:;"></a></li>
+            <li @click="handlePauseClick" :class="{ stop: isStoped }"><a href="javascript:;"></a></li>
+            <li><a href="javascript:;"></a></li>
           </ul>
           <div class="progress">
-            <span class="line"></span>
-            <span class="time">05：18</span>
+            <span class="line">
+              <i class="currentTime"></i>
+            </span>
+            <span class="time">{{ formatSeconds(currentTime) }} / {{ convertMillisecondsToMinutes(totalTime)
+            }}</span>
           </div>
+          <audio :src="currentMusic.mp3Url" autoplay ref="audio" @timeupdate="audioTimeUpdate()" @pause="musicPause()"
+            @ended="musicEnded()" @play="playLoad()" @playing="musicPlaying()" @error="musicErr()"></audio>
         </div>
       </div>
     </div>
@@ -54,8 +59,78 @@
 
 <script setup lang="ts">
 import { type ArticleItemResType } from "@/composables/index";
+
 const recentArticleList = ref<Array<ArticleItemResType>>();
 recentArticleList.value = (await getRecentUpdate()).data.list;
+
+const audio = ref()
+const currentTime = ref(0)
+const totalTime = ref(0)
+
+const currentIndex = ref(0)
+const currentMusic = ref<{ duration: number, mp3Url: string }>({
+  duration: 0,
+  mp3Url: ''
+})
+const musicMenu = ref([])
+
+const hotMenuRes = await getHotMenu()
+if (hotMenuRes.code == 200) {
+  musicMenu.value = hotMenuRes.data
+  currentMusic.value = musicMenu.value[currentIndex.value]
+  totalTime.value = currentMusic.value.duration
+}
+
+const isStoped = ref(true)
+const handlePauseClick = () => {
+  isStoped.value = !isStoped.value
+}
+watch(isStoped, (newVal, val) => {
+  if (newVal) {
+    audio.value.pause()
+  } else {
+    audio.value.play()
+  }
+})
+watch([currentTime, totalTime], (newVal, val) => {
+  let progress = (newVal[0] * 100000) / totalTime.value
+  //@ts-ignore
+  document.querySelector(".currentTime").style.transform = `translateX(${progress}%)`
+})
+const isPlaying = ref()
+
+const audioTimeUpdate = () => {
+  if (audio.value != null) {
+    currentTime.value = audio.value.currentTime;
+    console.log(currentTime)
+  }
+}
+const musicPause = () => {
+  isPlaying.value = false;
+}
+const musicEnded = () => {
+  console.log("end")
+}
+const playLoad = () => {
+
+}
+const musicErr = () => {
+  console.log("musicErr")
+}
+const musicPlaying = () => {
+  console.log("musicplaying")
+}
+const convertMillisecondsToMinutes = (ms: number) => {
+  const minutes = Math.floor(ms / 60000);
+  const seconds = Math.floor((ms % 60000) / 1000);
+
+  return minutes + ':' + seconds.toString().padStart(2, '0');
+}
+const formatSeconds = (seconds: number) => {
+  let minutes = Math.floor(seconds / 60);
+  let remainingSeconds = Math.floor(seconds % 60);
+  return minutes + ":" + (remainingSeconds < 10 ? "0" : "") + remainingSeconds;
+}  
 </script>
 
 <style lang="scss" scoped>
@@ -253,12 +328,16 @@ footer {
               display: block;
               opacity: .8;
               text-indent: -9999px;
-              transition: opacity .2s linear;
+              transition: opacity .2s linear, transform 0.2s, background, 0.2s;
               width: 18px;
               height: 18px;
 
               &:hover {
                 opacity: 1;
+              }
+
+              &:active {
+                transform: scale(0.8);
               }
             }
 
@@ -267,12 +346,17 @@ footer {
             }
 
             &:nth-child(2) a {
-              background-image: url(../assets/img/stop.svg);
+              background-image: url(../assets/img/start.svg);
             }
 
             &:nth-child(3) a {
               background-image: url(../assets/img/next.svg);
             }
+
+          }
+
+          .stop a {
+            background-image: url(../assets/img/stop.svg) !important;
           }
         }
 
@@ -285,16 +369,16 @@ footer {
             height: 2px;
             display: block;
             background: #808080;
-            position: relative;
 
-            &::after {
-              content: '';
-              position: absolute;
+            i {
+              display: block;
               height: 16px;
-              width: 2px;
+              width: 100%;
+              position: relative;
               top: -7px;
-              background-color: red;
-              transform: translateX(30px);
+              background-color: transparent;
+              border-left: 2px solid red;
+              transform: translateX(0%);
             }
           }
 

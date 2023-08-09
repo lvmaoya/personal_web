@@ -1,5 +1,4 @@
 var L2Dwidget = (function (t) {
-  console.log("zhixin");
   var n = window.webpackJsonpL2Dwidget;
   window.webpackJsonpL2Dwidget = function (e, o, i) {
     for (var c, u, a = 0, f = []; a < e.length; a++) (u = e[a]), r[u] && f.push(r[u][0]), (r[u] = 0);
