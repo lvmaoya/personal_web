@@ -7,61 +7,25 @@
 <template>
   <div class="content">
     <el-table stripe :data="props.commentList" style="width: 100%">
-      <el-table-column
-        prop="article_id"
-        label="评论文章"
-        min-width="150"
-        align="center"
-      />
-      <el-table-column
-        prop="user_name"
-        label="评论人"
-        min-width="150"
-        align="center"
-      />
+      <el-table-column type="index" width="150" label="序号" align="center" />
+      <el-table-column prop="article_id" label="评论文章ID" min-width="150" align="center" />
+      <el-table-column prop="user_name" label="评论人" min-width="150" align="center" />
 
-      <el-table-column
-        prop="content"
-        label="评论内容"
-        min-width="150"
-        align="center"
-      />
+      <el-table-column prop="content" label="评论内容" min-width="150" align="center" />
       <!-- <el-table-column
         prop="comment_place"
         label="评论来源"
         min-width="150"
         align="center"
       /> -->
-      <el-table-column
-        prop="created_time"
-        label="评论时间"
-        min-width="150"
-        align="center"
-        sortable
-      />
-      <el-table-column
-        fixed="right"
-        label="选项"
-        min-width="140"
-        align="center"
-      >
+      <el-table-column prop="created_time" label="评论时间" min-width="150" align="center" sortable />
+      <el-table-column fixed="right" label="选项" min-width="140" align="center">
         <template #default="scope">
-          <el-button
-            link
-            type="primary"
-            size="small"
-            @click="handleClick(scope.row, form.hidden)"
-            >{{ scope.row.is_checked === 0 ? "隐藏" : "显示" }}</el-button
-          >
+          <el-button link type="primary" size="small" @click="handleClick(scope.row, form.hidden)">{{ scope.row.is_checked
+            === 0 ? "隐藏" : "显示" }}</el-button>
           <!-- 如果该类别下存在有文章则不允许删除，并给予提示 -->
-          <el-popconfirm
-            confirm-button-text="是"
-            cancel-button-text="否"
-            :icon="WarningFilled"
-            icon-color="red"
-            title="确定删除？"
-            @confirm="handleClick(scope.row.commentary_id, form.delete)"
-          >
+          <el-popconfirm confirm-button-text="是" cancel-button-text="否" :icon="WarningFilled" icon-color="red"
+            title="确定删除？" @confirm="handleClick(scope.row.commentary_id, form.delete)">
             <template #reference>
               <el-button text type="primary" size="small">删除</el-button>
             </template>
@@ -109,4 +73,10 @@ const handleClick = (val: any, formVal: number) => {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.content {
+  .el-table {
+    height: calc(100vh - 166px);
+  }
+}
+</style>

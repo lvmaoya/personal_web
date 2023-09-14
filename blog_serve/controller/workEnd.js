@@ -333,6 +333,7 @@ exports.uploadQiqiu = (req, res, next) => {
     let key = "";
     form.parse(req, (error, fields, files) => {
       if (error) {
+        console.log(1, error);
         // 返回错误
         return res.status(400).json({
           code: 1,
@@ -363,6 +364,8 @@ exports.uploadQiqiu = (req, res, next) => {
         // 文件上传
         formUploader.putFile(uploadToken, key, localFile, putExtra, function (respErr, respBody, respInfo) {
           if (respErr) {
+            console.log(2, respErr);
+
             return res.status(400).json({
               code: 1,
               message: "error",

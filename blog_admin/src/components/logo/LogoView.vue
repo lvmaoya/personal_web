@@ -17,9 +17,8 @@ const handleLogoClick = () => {
 <style lang="scss" scoped>
 .logo {
   // width: 10%;
-  font-size: 1.2em;
+  font-size: 17;
   cursor: pointer;
-  color: gray;
   user-select: none;
   width: 100px;
 }

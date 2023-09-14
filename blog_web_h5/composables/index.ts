@@ -134,6 +134,8 @@ export interface CommentConfigType {
   content: string;
   created_time: string;
   comment_type: number;
+  email?:string;
+  site?:string
 }
 export function commitComment(config: CommentConfigType) {
   return Http.post<ResponseConfig<object>>("/commitComment", config);

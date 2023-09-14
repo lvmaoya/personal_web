@@ -70,6 +70,7 @@ header {
         li {
           max-width: 70px;
           padding: 0 10px;
+          list-style: none;
 
           a {
             font-size: 0.875em;

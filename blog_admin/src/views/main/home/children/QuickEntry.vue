@@ -12,12 +12,7 @@
     <!-- 文章管理，发布文章，个人信息，系统用户，回收站，娱乐中心 -->
 
     <el-row :gutter="5" justify="center">
-      <el-col
-        :span="8"
-        v-for="item in expressConfig"
-        :key="item.name"
-        @click="handleExpressWayClick(item.name)"
-      >
+      <el-col :span="8" v-for="item in expressConfig" :key="item.name" @click="handleExpressWayClick(item.name)">
         <div class="icon">
           <el-icon>
             <component :is="item.icon"></component>
@@ -45,25 +40,26 @@ let expressConfig = ref([
     title: "发布文章",
   },
   {
-    name: "personalInfo",
-    icon: "User",
-    title: "个人简历",
+    name: "category",
+    icon: "Grid",
+    title: "文章分类",
   },
   {
-    name: "systemUser",
-    icon: "Setting",
-    title: "系统用户",
+    name: "comment",
+    icon: "Comment",
+    title: "评论审核",
+  },
+  {
+    name: "temporaryStorage",
+    icon: "Box",
+    title: "暂存箱",
   },
   {
     name: "recycleBin",
     icon: "Delete",
     title: "回收站",
   },
-  {
-    name: "system",
-    icon: "Tickets",
-    title: "年度计划",
-  },
+
 ]);
 const handleExpressWayClick = (val: string) => {
   router.push({
@@ -89,19 +85,23 @@ const handleExpressWayClick = (val: string) => {
     cursor: pointer;
     transition: color 0.2s ease-in;
   }
+
   .el-col:hover {
     color: rgb(84, 112, 198);
   }
+
   .icon {
     font-size: 2em;
     margin-bottom: 2px;
   }
 }
+
 .title {
   padding: 5px;
   font-size: 1.1em;
   color: #909399;
 }
+
 .detailTitle {
   font-size: 14px;
 }

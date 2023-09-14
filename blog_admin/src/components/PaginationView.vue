@@ -6,16 +6,9 @@
 -->
 <template>
   <div class="pagination">
-    <el-pagination
-      :currentPage="props.currentPage"
-      :page-size="props.pageSize"
-      :page-sizes="[20, 40, 70, 100]"
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="props.total"
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :background="true"
-    />
+    <el-pagination :currentPage="props.currentPage" :page-size="props.pageSize" :page-sizes="[20, 40, 70, 100]"
+      layout="total, sizes, prev, pager, next, jumper" :total="props.total" @size-change="handleSizeChange"
+      @current-change="handleCurrentChange" :background="true" />
   </div>
 </template>
 
@@ -61,6 +54,6 @@ const handleCurrentChange = (val: number) => {
   user-select: none;
   display: flex;
   justify-content: center;
-  padding: 30px 0px 30px 0px;
+  padding: 20px 0px 10px 0px;
 }
 </style>

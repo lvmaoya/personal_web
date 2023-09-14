@@ -1,16 +1,8 @@
 <template>
   <div class="cont articleList">
-    <ListContent
-      :articleList="articleList"
-      @table-item-click="hanleTableItemClick"
-    ></ListContent>
-    <PaginationView
-      :total="total"
-      :currentPage="currentPage"
-      :pageSize="pageSize"
-      @current-page-change="handleCurrentPageChange"
-      @page-size-change="handlePageSizeChange"
-    ></PaginationView>
+    <ListContent :articleList="articleList" @table-item-click="hanleTableItemClick"></ListContent>
+    <PaginationView :total="total" :currentPage="currentPage" :pageSize="pageSize"
+      @current-page-change="handleCurrentPageChange" @page-size-change="handlePageSizeChange"></PaginationView>
   </div>
 </template>
 
@@ -25,6 +17,7 @@ import {
 } from "@/service/article";
 import { ref } from "vue";
 import { ElMessage } from "element-plus";
+import { useRouter } from "vue-router";
 let total = ref(0);
 let status = ref(1);
 const currentPage = ref(1);
@@ -88,11 +81,15 @@ const deleteArticleData = async (config: deleteArticleConfigType) => {
       });
     }
 };
-
+const router = useRouter()
 // 当点击li后面的选项后判断点击了哪一个，并执行相应的方法
 const hanleTableItemClick = (row: number, formVal: number) => {
   switch (formVal) {
     case form.continue: {
+      router.push({
+        name: "editArticle",
+        query: { id: row },
+      });
       break;
     }
     case form.delete: {

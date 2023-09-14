@@ -139,7 +139,7 @@ exports.getRecentArticleDB = (req, res) => {
 };
 // 获取最近更新的所有文章6篇
 exports.getRecentAllDB = (req, res) => {
-  const params = "SELECT  * FROM blog WHERE is_privacy = 1 and  status = 0  order by published_time desc LIMIT 1,5;";
+  const params = "SELECT  * FROM blog WHERE is_privacy = 1 and  status = 0  order by published_time desc LIMIT 0,5;";
   return new Promise((resolve) => {
     connection.query(params, function (err, rows, fields) {
       if (err) {
@@ -320,7 +320,6 @@ exports.commitCommentDB = (req, res) => {
   const avatar = req.body.avatar;
   const content = req.body.content;
   const created_time = formatDateTime(new Date(req.body.created_time));
-  console.log(created_time);
   const comment_type = req.body.comment_type;
 
   const commentParams = [

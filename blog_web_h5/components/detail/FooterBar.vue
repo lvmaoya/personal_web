@@ -56,20 +56,11 @@
           <div class="commentListEdit">
             <div class="userImg" v-html="avatar"></div>
             <div id="commentForm">
-              <textarea
-                name="commentContent"
-                ref="textareaRef"
-                id="commentContent"
-                placeholder="欢迎您的评论，低质的评论会被折叠"
-                maxlength="1000"
-                v-model="textareaText"
-              ></textarea>
+              <textarea name="commentContent" ref="textareaRef" id="commentContent" placeholder="欢迎您的评论，低质的评论会被折叠"
+                maxlength="1000" v-model="textareaText"></textarea>
               <div class="commentOperate">
                 <div class="comment-operate-l">
-                  <span
-                    >还能输入<em>{{ maxlength }}</em
-                    >个字符</span
-                  >
+                  <span>还能输入<em>{{ maxlength }}</em>个字符</span>
                 </div>
                 <div class="comment-operate-r">
                   <button class="btnComment" @click="handleCommentClick">评论</button>
@@ -97,7 +88,7 @@
                               </div>
                             </div>
                             <div class="date">
-                              {{ formatTime(new Date(item.created_time)).toString().substring(2) }}
+                              {{ formatTime(item.created_time).toString().substring(2) }}
                             </div>
                           </div>
                           <div class="response-box" @click="handleResponseSBClick(item.commentary_id, item.user_name)">
@@ -244,7 +235,7 @@ watch(drawerActive, (val, preVal) => {
   if (val) {
     const header = document.querySelector("header") as HTMLElement;
     header.style.top = "0";
-    var scrollFunc = function (e: any) {};
+    var scrollFunc = function (e: any) { };
     /*注册事件*/
     if (document.addEventListener) {
       document.addEventListener("DOMMouseScroll", scrollFunc, false);
@@ -385,18 +376,23 @@ const handleResponseSBClick = (user_id: number, user_name: string) => {
 .comment {
   width: 100%;
   height: 100px;
-  & > ul {
+
+  &>ul {
     height: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+
     li {
       margin-right: 1.325em;
+      list-style: none;
+
       span {
         .icon {
           font-size: 1.2em;
           color: gray;
         }
+
         font-size: 16px;
         color: #313131;
         margin-right: 0.3em;
@@ -405,6 +401,7 @@ const handleResponseSBClick = (user_id: number, user_name: string) => {
       }
     }
   }
+
   .drawer {
     width: 30%;
     min-width: 432px;
@@ -417,29 +414,35 @@ const handleResponseSBClick = (user_id: number, user_name: string) => {
     padding-top: 5em;
     top: 0;
     transition: right 1s;
+
     .drawerScroll {
       width: 100%;
       height: 100%;
       overflow: hidden;
       overflow-y: auto;
+
       &::-webkit-scrollbar {
         width: 6px;
         height: 6px;
       }
+
       // 滚动条的轨道的两端按钮，允许通过点击微调小方块的位置。
       &::-webkit-scrollbar-button {
         display: none;
       }
+
       // 滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂直滚动条还是水平滚动条）
       &::-webkit-scrollbar-thumb {
         background: rgba(80, 79, 79, 0.3);
         cursor: pointer;
         border-radius: 4px;
       }
+
       // 边角，即两个滚动条的交汇处
       &::-webkit-scrollbar-corner {
         display: none;
       }
+
       // 两个滚动条的交汇处上用于通过拖动调整元素大小的小控件
       &::-webkit-resizer {
         display: none;
@@ -451,10 +454,12 @@ const handleResponseSBClick = (user_id: number, user_name: string) => {
       display: flex;
       justify-content: space-between;
       border-bottom: 1px solid #e8e8ed;
+
       .icon {
         color: gray;
       }
     }
+
     .drawerBody {
       display: flex;
       flex-direction: column;
@@ -470,13 +475,16 @@ const handleResponseSBClick = (user_id: number, user_name: string) => {
         background-color: #fdfdfd;
         z-index: 1234;
         padding-bottom: 10px;
+
         .userImg {
           margin-right: 8px;
           padding-top: 9px;
+
           :deep(svg) {
             width: 30px;
             height: 30px;
           }
+
           img {
             display: block;
             width: 30px;
@@ -485,12 +493,14 @@ const handleResponseSBClick = (user_id: number, user_name: string) => {
             border: 1px solid #e8e8ed;
           }
         }
+
         #commentForm {
           width: 100%;
           position: relative;
           background: rgba(245, 246, 247, 0.8);
           border-radius: 8px;
           padding: 14px 0;
+
           #commentContent {
             display: block;
             width: 100%;
@@ -516,34 +526,41 @@ const handleResponseSBClick = (user_id: number, user_name: string) => {
               width: 6px;
               height: 6px;
             }
+
             // 滚动条的轨道的两端按钮，允许通过点击微调小方块的位置。
             &::-webkit-scrollbar-button {
               display: none;
             }
+
             // 滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂直滚动条还是水平滚动条）
             &::-webkit-scrollbar-thumb {
               background: rgba(80, 79, 79, 0.3);
               cursor: pointer;
               border-radius: 4px;
             }
+
             // 边角，即两个滚动条的交汇处
             &::-webkit-scrollbar-corner {
               display: none;
             }
+
             // 两个滚动条的交汇处上用于通过拖动调整元素大小的小控件
             &::-webkit-resizer {
               display: none;
             }
           }
+
           .commentOperate {
             padding: 8px 16px 0 16px;
             display: flex;
             justify-content: space-between;
+
             .comment-operate-l {
               span {
                 font-size: 12px;
                 color: #999aaa;
                 line-height: 17px;
+
                 em {
                   color: #222226;
                   margin: 0 4px;
@@ -552,6 +569,7 @@ const handleResponseSBClick = (user_id: number, user_name: string) => {
                 }
               }
             }
+
             .comment-operate-r {
               .btnComment {
                 display: block;
@@ -569,36 +587,49 @@ const handleResponseSBClick = (user_id: number, user_name: string) => {
           }
         }
       }
+
       .commentListContainer {
         padding-top: 12px;
+
         .commentListBox {
+          ul>li {
+            list-style: none;
+          }
+
           .commentListItem {
             display: flex;
             width: 100%;
+
             .userImg {
               margin-right: 8px;
               padding-top: 16px;
+
               :deep(svg) {
                 width: 30px;
                 height: 30px;
               }
             }
+
             .right-box {
               padding-top: 16px;
               padding-bottom: 16px;
               width: 100%;
               margin-left: 8px;
+
               &:hover .response-box {
                 display: block !important;
               }
+
               .comment-top {
                 display: flex;
                 justify-content: space-between;
                 margin-bottom: 4px;
                 line-height: 20px;
                 font-size: 14px;
+
                 .user-box {
                   display: flex;
+
                   .name {
                     display: flex;
                     color: #777888;
@@ -613,15 +644,18 @@ const handleResponseSBClick = (user_id: number, user_name: string) => {
                       text-overflow: ellipsis;
                       white-space: nowrap;
                     }
+
                     .anwserName {
                       margin-left: 7px;
                       display: flex;
+
                       .answerText {
                         display: block;
                         margin-right: 7px;
                         font-style: italic;
                         font-size: 10px;
                       }
+
                       .anwserNameContent {
                         display: block;
                         max-width: 65px;
@@ -631,6 +665,7 @@ const handleResponseSBClick = (user_id: number, user_name: string) => {
                       }
                     }
                   }
+
                   .date {
                     margin-left: 5px;
                     font-style: italic;
@@ -638,9 +673,11 @@ const handleResponseSBClick = (user_id: number, user_name: string) => {
                     color: #777888;
                   }
                 }
+
                 .response-box {
                   display: none;
                   cursor: pointer;
+
                   .icon {
                     transform: rotateY(180deg);
                     width: 1.2em;
@@ -648,6 +685,7 @@ const handleResponseSBClick = (user_id: number, user_name: string) => {
                   }
                 }
               }
+
               .comment-center {
                 .new-comment {
                   font-size: 14px;
@@ -662,10 +700,12 @@ const handleResponseSBClick = (user_id: number, user_name: string) => {
       }
     }
   }
+
   .drawerActive {
     right: 0;
   }
 }
+
 .dialogTip {
   width: 100%;
   height: 100%;
@@ -677,6 +717,7 @@ const handleResponseSBClick = (user_id: number, user_name: string) => {
   justify-content: center;
   z-index: 999999;
   background-color: rgba(0, 0, 0, 0.66);
+
   .userNameForm {
     width: 25%;
     display: flex;
@@ -685,8 +726,10 @@ const handleResponseSBClick = (user_id: number, user_name: string) => {
     font-size: 14px;
     padding: 20px;
     border-radius: 10px;
+
     .dialogBody {
       padding: 20px 0;
+
       input {
         width: 100%;
         height: 30px;
@@ -694,19 +737,23 @@ const handleResponseSBClick = (user_id: number, user_name: string) => {
         padding-left: 10px;
         box-sizing: border-box;
         border-radius: 5px;
+
         &:focus {
           outline: none;
           border: none;
         }
       }
     }
+
     .dialogFooter {
       display: flex;
       justify-content: center;
+
       button {
         padding: 5px 10px;
         border: 1px solid #dcdfe6;
         border-radius: 4px;
+
         &:nth-child(2) {
           margin-left: 20px;
           background-color: #6e8efb;

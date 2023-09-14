@@ -1,31 +1,20 @@
-<!--
- * @Author: sun
- * @Date: 2022-12-23 21:58:29
- * @LastEditTime: 2023-01-02 21:58:28
- * @Description: Do not edit
--->
 <template>
-  <div class="w">
-    <Search :isSearchInputFocus="isSearchInputFocus" @search-btn-click="handleSearchBtnClick"></Search>
-    <WorkArticleCategory @tag-click="tagClick"></WorkArticleCategory>
-    <div
-      class="categoryViewWorkContent"
-      :style="`${isCategoryVisible ? 'opacity:1;z-index:99999' : 'opacity:0;z-index:-1'}`"
-    >
-      <WorkTagCategory @category-tag-click="categoryTagClick"></WorkTagCategory>
+  <div class="content">
+    <div class="inner">
+      <div class="controller">
+        <Search :isSearchInputFocus="isSearchInputFocus" @search-btn-click="handleSearchBtnClick"></Search>
+        <WorkArticleCategory @tag-click="tagClick"></WorkArticleCategory>
+        <div class="categoryViewWorkContent"
+          :style="`${isCategoryVisible ? 'opacity:1;z-index:99999' : 'opacity:0;z-index:-1'}`">
+          <WorkTagCategory @category-tag-click="categoryTagClick"></WorkTagCategory>
+        </div>
+      </div>
+      <WorkContent :list="(articleList as ArticleListResType)?.list" v-if="!isCategoryVisible"></WorkContent>
+      <NoData v-if="total === 0"></NoData>
     </div>
-    <WorkContent :list="(articleList as ArticleListResType)?.list" v-if="!isCategoryVisible"></WorkContent>
-    <NoData v-if="total === 0"></NoData>
+    <Pagination v-if="!isCategoryVisible" @current-page-change="handleCurrentPageChange" :current-page="currentPage"
+      :total="total" :size="size"></Pagination>
   </div>
-  <Pagination
-    v-if="!isCategoryVisible"
-    @current-page-change="handleCurrentPageChange"
-    :current-page="currentPage"
-    :total="total"
-    :size="size"
-  ></Pagination>
-
-  <Footer></Footer>
 </template>
 
 <script lang="ts" setup>
@@ -152,12 +141,31 @@ const handleSearchBtnClick = async (searchData: searchConfigType) => {
   articleList.value = resArticlesData.data;
   total.value = resArticlesData.data.total;
 };
+watch(isCategoryVisible, (newval) => {
+  if (newval) {
+    document.querySelector('Footer')?.classList.add('none')
+  } else {
+    document.querySelector('Footer')?.classList.remove('none')
+  }
+})
 </script>
 
 <style scoped lang="scss">
+.content {
+  margin-bottom: 258px;
+  background-color: #fff;
+  position: relative;
+  z-index: 21;
+}
+
+.controller {
+  padding: 25vh 0 9vh 0;
+  position: relative;
+}
+
 .categoryViewWorkContent {
   position: absolute;
-  transition: 0.5s;
+  transition: opacity 0.5s;
   width: 100%;
 }
 </style>

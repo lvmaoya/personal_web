@@ -7,47 +7,25 @@
 <template>
   <div class="content">
     <el-table stripe :data="props.categoryList" style="width: 100%">
-      <el-table-column
-        prop="category_name"
-        label="类别名称"
-        min-width="150"
-        align="center"
-      />
+      <el-table-column type="index" width="150" label="序号" align="center" />
+      <el-table-column prop="category_name" label="类别名称" min-width="150" align="center" />
       <el-table-column label="父类别名称" min-width="76" align="center">
         <template #default="scope">
           {{
             scope.row.father_category_name === 1
-              ? "项目"
-              : scope.row.father_category_name === 2
+            ? "项目"
+            : scope.row.father_category_name === 2
               ? "技术文章"
               : "随笔"
           }}
         </template>
       </el-table-column>
-      <el-table-column
-        fixed="right"
-        label="选项"
-        min-width="140"
-        align="center"
-      >
+      <el-table-column fixed="right" label="选项" min-width="140" align="center">
         <template #default="scope">
-          <el-button
-            link
-            type="primary"
-            size="small"
-            @click="handleClick(scope.row, form.update)"
-            >更改类别名称</el-button
-          >
+          <el-button link type="primary" size="small" @click="handleClick(scope.row, form.update)">更改类别名称</el-button>
           <!-- 如果该类别下存在有文章则不允许删除，并给予提示 -->
-          <el-popconfirm
-            v-if="scope.row.father_category_name === 2"
-            confirm-button-text="Yes"
-            cancel-button-text="No"
-            :icon="WarningFilled"
-            icon-color="red"
-            title="确定删除？"
-            @confirm="handleClick(scope.row, form.delete)"
-          >
+          <el-popconfirm v-if="scope.row.father_category_name === 2" confirm-button-text="Yes" cancel-button-text="No"
+            :icon="WarningFilled" icon-color="red" title="确定删除？" @confirm="handleClick(scope.row, form.delete)">
             <template #reference>
               <el-button text type="primary" size="small">删除该类别</el-button>
             </template>
@@ -87,4 +65,10 @@ const handleClick = (val: any, formVal: number) => {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.content {
+  .el-table {
+    height: calc(100vh - 160px);
+  }
+}
+</style>

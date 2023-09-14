@@ -6,53 +6,29 @@
       </div>
       <div class="loginForm">
         <h3 class="title">博客后台管理</h3>
-        <el-form
-          :model="formData"
-          status-icon
-          :rules="rules"
-          label-width="79px"
-          ref="formRef"
-        >
+        <el-form :model="formData" status-icon :rules="rules" label-width="79px" ref="formRef">
           <el-form-item label="用户名" prop="userName">
             <el-input v-model="formData.userName"></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="password">
-            <el-input
-              type="password"
-              v-model="formData.password"
-              autocomplete="off"
-            ></el-input>
+            <el-input type="password" v-model="formData.password" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="验证码" prop="authCode" class="authCode">
-            <el-row
-              ><el-col :span="10">
+            <el-row><el-col :span="10">
                 <el-input v-model="formData.authCode"></el-input>
               </el-col>
-              <el-col :span="10"
-                ><div class="loading" v-if="authCodeSvg == ''"></div>
-                <div
-                  v-else
-                  v-html="authCodeSvg"
-                  @click="changeAuthCode"
-                ></div> </el-col
-            ></el-row>
+              <el-col :span="10">
+                <div class="loading" v-if="authCodeSvg == ''"></div>
+                <div v-else v-html="authCodeSvg" @click="changeAuthCode"></div>
+              </el-col></el-row>
           </el-form-item>
           <el-row justify="end">
-            <el-col :span="5" class="forgetCol"
-              ><span class="forgetPassword" @click="visitorLogin"
-                >游客登录&nbsp;</span
-              ></el-col
-            >
-            <el-col :span="4" class="forgetCol"
-              ><span class="forgetPassword" @click="forgetPassword"
-                >忘记密码</span
-              ></el-col
-            >
+            <el-col :span="5" class="forgetCol"><span class="forgetPassword"
+                @click="visitorLogin">游客登录&nbsp;</span></el-col>
+            <el-col :span="4" class="forgetCol"><span class="forgetPassword" @click="forgetPassword">忘记密码</span></el-col>
           </el-row>
           <el-form-item>
-            <el-button type="primary" @click="submitForm(formRef)"
-              >提交</el-button
-            >
+            <el-button type="primary" @click="submitForm(formRef)">提交</el-button>
             <el-button @click="resetForm(formRef)">重置</el-button>
           </el-form-item>
         </el-form>
@@ -68,25 +44,25 @@ import { ElMessage, type FormInstance, type FormRules } from "element-plus";
 import cache from "@/utils/cache";
 import { useRouter, useRoute, onBeforeRouteLeave } from "vue-router";
 
-import axios from "axios";
-axios
-  .get("https://qyapi.weixin.qq.com/cgi-bin/gettoken", {
-    params: {
-      corpid: "wwcbd3fd2e2aa98f3d",
-      corpsecret: "QuWmHA0a_5OJyqBbnzOYvIQw_-5PqzO3oKa6M_P83yk",
-    },
-    headers: {
-      "Content-Type": "Access-Control-Allow-Origin", // 设置请求头的Content-Type
-    },
-  })
-  .then(function (response) {
-    console.log("成功", response);
-    console.log(response.data);
-  })
-  .catch(function (error) {
-    console.log("失败", error);
-    console.log(error);
-  });
+// import axios from "axios";
+// axios
+//   .get("https://qyapi.weixin.qq.com/cgi-bin/gettoken", {
+//     params: {
+//       corpid: "wwcbd3fd2e2aa98f3d",
+//       corpsecret: "QuWmHA0a_5OJyqBbnzOYvIQw_-5PqzO3oKa6M_P83yk",
+//     },
+//     headers: {
+//       "Content-Type": "Access-Control-Allow-Origin", // 设置请求头的Content-Type
+//     },
+//   })
+//   .then(function (response) {
+//     console.log("成功", response);
+//     console.log(response.data);
+//   })
+//   .catch(function (error) {
+//     console.log("失败", error);
+//     console.log(error);
+//   });
 
 // let background = ref<LoginBackground>({ imgSrc: "", title: "" });
 const formRef = ref<FormInstance>();
@@ -196,6 +172,7 @@ onBeforeUnmount(() => {
   justify-content: center;
   align-items: center;
   background-color: rgb(248, 246, 247);
+
   .loginContent {
     width: 900px;
     height: 500px;
@@ -211,11 +188,13 @@ onBeforeUnmount(() => {
       height: 300px;
       padding-right: 40px;
       border-right: 1px solid grey;
+
       img {
         width: 100%;
         height: 100%;
       }
     }
+
     .loginForm {
       width: 300px;
       height: 300px;
@@ -224,22 +203,27 @@ onBeforeUnmount(() => {
 
       // box-shadow: 35px 35px 70px #bebebe, -35px -35px 70px #ffffff;
       user-select: none;
+
       .title {
         text-align: center;
         margin-top: 0;
         margin-left: 30px;
         letter-spacing: 2px;
       }
+
       .el-col-10 {
         height: 40px;
       }
+
       .loading {
         height: 40px;
         width: 150px;
       }
+
       .forgetCol {
         padding: 0 0px 19px 0;
       }
+
       .forgetPassword {
         font-size: 12px;
         color: #606266;

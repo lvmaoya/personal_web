@@ -3,13 +3,13 @@ export function isView(ref) {
   const isInSight = (item) => {
     const bound = item.getBoundingClientRect();
     const clientHight = window.innerHeight;
-    return bound.top <= clientHight + 50 && item.querySelector("img").getAttribute("src") == undefined;
+    return bound.top <= clientHight + 66;
   };
   const lazyLoad = () => {
     for (let item of ref.value) {
-      const imgEl = item.querySelector("img");
       if (isInSight(item)) {
-        imgEl.setAttribute("src", imgEl.getAttribute("data-src"));
+        const imgBox = item.querySelector(".image");
+        imgBox.style.backgroundImage = "url(" + imgBox.getAttribute("data-src") + ")";
       }
     }
   };

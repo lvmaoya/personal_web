@@ -8,10 +8,13 @@ export interface ResponseConfig<T> {
   message: string;
   data: T;
 }
+let loadingCount = 0;
 
 import baseURL from "./base-config";
+// import { showLoading, hideLoading } from "~~/loading";
 const fetch = (url: string, options?: any): Promise<any> => {
   const { $router } = useNuxtApp();
+  loadingCount++;
   let reqUrl = "";
   if (/^(ftp|http|https):\/\/[^ "]+$/.test(url)) {
     reqUrl = url;
@@ -19,7 +22,16 @@ const fetch = (url: string, options?: any): Promise<any> => {
     reqUrl = baseURL + url;
   }
   return new Promise((resolve, reject) => {
-    useFetch(reqUrl, { ...options })
+    useFetch(reqUrl, {
+      onRequest({ options }) {
+        // showLoading();
+      },
+      onResponse({ response }) {
+        // hideLoading();
+      },
+      onResponseError({ response }) {},
+      ...options,
+    })
       .then(({ data, error }: _AsyncData<any, any>) => {
         if (error.value) {
           reject(error.value);
@@ -44,18 +56,18 @@ const fetch = (url: string, options?: any): Promise<any> => {
 
 export default new (class Http {
   get<T = any>(url: string, params?: any): Promise<T> {
-    return fetch(url, { method: "get", params });
+    return fetch(url, { method: "get", params, server: true });
   }
 
   post<T = any>(url: string, body?: any): Promise<T> {
-    return fetch(url, { method: "post", body });
+    return fetch(url, { method: "post", body, server: true });
   }
 
   put<T = any>(url: string, body?: any): Promise<T> {
-    return fetch(url, { method: "put", body });
+    return fetch(url, { method: "put", body, server: true });
   }
 
   delete<T = any>(url: string, body?: any): Promise<T> {
-    return fetch(url, { method: "delete", body });
+    return fetch(url, { method: "delete", body, server: true });
   }
 })();

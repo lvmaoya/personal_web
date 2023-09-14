@@ -13,6 +13,10 @@
     "sass-loader": "^10.4.1"
   },
   "dependencies": {
-    "@kangc/v-md-editor": "^2.3.15"
+    "@kangc/v-md-editor": "^2.3.15",
+    "animate.css": "^4.1.1"
+  },
+  "optionalDependencies": {
+    "fsevents": "*"
   }
 }

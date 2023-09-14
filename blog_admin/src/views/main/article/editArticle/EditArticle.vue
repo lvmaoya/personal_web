@@ -6,22 +6,10 @@
 -->
 <template>
   <div class="editArticle">
-    <ArticleDecs
-      @publish="handlePublish"
-      @draft="handleDraft"
-      @clear="handleClear"
-      :categoryList="categoryList"
-      :isPublish="isPublish"
-      :backFormData="backFormData"
-      ref="articleDesc"
-    ></ArticleDecs>
-    <v-md-editor
-      v-model="text"
-      height="1000px"
-      :disabled-menus="[]"
-      @upload-image="handleUploadImage"
-      @blur="handleEditorBlur"
-    ></v-md-editor>
+    <ArticleDecs @publish="handlePublish" @draft="handleDraft" @clear="handleClear" :categoryList="categoryList"
+      :isPublish="isPublish" :backFormData="backFormData" ref="articleDesc"></ArticleDecs>
+    <v-md-editor v-model="text" height="1000px" :disabled-menus="[]" @upload-image="handleUploadImage"
+      @blur="handleEditorBlur"></v-md-editor>
   </div>
 </template>
 
@@ -194,6 +182,7 @@ const handleUploadImage = (event: any, insertImage: any, files: any) => {
   padding: 10px;
   box-shadow: none;
   box-sizing: border-box;
+
   :deep(.v-md-editor__right-area) {
     box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%) !important;
   }

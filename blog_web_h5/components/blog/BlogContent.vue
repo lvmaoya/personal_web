@@ -16,7 +16,7 @@
           <span class="titleContent">{{ item.title }}</span>
         </div>
         <div class="date">
-          <span> {{ formatTime(new Date(item.published_time)) }}</span>
+          <span> {{ item.published_time.replace(/:[^:]*$/, '') }}</span>
         </div>
         <div class="description">
           {{ item.description }}
@@ -44,7 +44,6 @@ const handleArticleClick = (id: number) => {
 <style scoped lang="scss">
 ul {
   width: 100%;
-  padding-top: 3em;
   padding-bottom: 50px;
   display: flex;
   // justify-content: center;
@@ -52,16 +51,16 @@ ul {
 
   li {
     width: 100%;
+    list-style: none;
 
     .img {
       width: 100%;
-      height: calc(19vw * 9 / 16);
-      min-height: 170px;
+      height: auto;
       overflow: hidden;
 
       img {
         width: 100%;
-        height: 100%;
+        height: auto;
         vertical-align: bottom;
       }
     }
@@ -85,14 +84,14 @@ ul {
         font-size: 1.1em;
         font-weight: 500;
         color: #4d4d4d;
-        border-bottom: 2px solid #f7f7f7;
+        border-bottom: 1px solid #ffffff;
         transition: all 0.2s;
 
         //   box-sizing: border-box;
         //   display: block;
         //   width: fit-content;
         &:hover {
-          border-bottom: 2px solid #4d4d4d;
+          border-bottom: 1px solid #4d4d4d;
         }
       }
     }
@@ -130,6 +129,7 @@ ul {
   ul li {
     width: calc(50% - 15px);
     margin: 0 30px 20px 0;
+    list-style: none;
 
     &:nth-child(2n) {
       margin-right: 0;
@@ -142,6 +142,7 @@ ul {
     width: calc(33.33333% - 15px);
     margin: 0 20px 20px 0;
     padding: 0;
+    list-style: none;
 
     &:nth-child(2n) {
       margin-right: 20px;
@@ -156,6 +157,7 @@ ul {
 @media (min-width: 1400px) {
   ul li {
     width: calc(25% - 15px);
+    list-style: none;
 
     &:nth-child(2n) {
       margin-right: 20px;

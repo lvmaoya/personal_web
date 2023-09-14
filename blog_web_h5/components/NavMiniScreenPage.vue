@@ -128,6 +128,7 @@ watch(close, (newVal) => {
                 width: 100%;
                 text-align: center;
                 padding: 9px 0;
+                list-style: none;
 
                 a {
                     font-size: 23px;

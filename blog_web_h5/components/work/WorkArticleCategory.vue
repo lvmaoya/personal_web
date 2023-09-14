@@ -1,19 +1,11 @@
-<!--
- * @Author: sun
- * @Date: 2022-12-29 21:11:27
- * @LastEditTime: 2023-03-06 19:28:42
- * @Description: Do not edit
--->
 <template>
   <div class="category">
     <ul id="navigationMenu">
       <li v-for="item in asideItem" :key="item.className" @click.stop="handleTagClick(item.id)">
-        <a :class="item.className">
-          <span class="backgroundSpan">
-            <svg class="icon" aria-hidden="true">
-              <use :xlink:href="`${item.iconHref}`"></use>
-            </svg>
-          </span>
+        <a :class="item.className" class="backgroundSpan">
+          <svg class="icon" aria-hidden="true">
+            <use :xlink:href="`${item.iconHref}`"></use>
+          </svg>
         </a>
         <span class="title">
           {{ item.title }}
@@ -66,69 +58,104 @@ const handleTagClick = (value: number) => {
 <style scoped lang="scss">
 .category {
   width: 100%;
+  max-width: 550px;
   margin: 50px auto 42px;
 }
+
 #navigationMenu {
   display: flex;
-  width: 40%;
+  flex-wrap: wrap;
+  width: 100%;
   margin: 0 auto;
   justify-content: space-around;
+
   li {
     list-style: none;
     text-align: center;
+    list-style: none;
 
     a {
-      height: 2.5em;
-      width: 2.5em;
-      display: block;
-      position: relative;
+      height: 40px;
+      width: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       border-radius: 50%;
-      overflow: hidden;
+      // overflow: hidden;
       margin: 5px auto;
+      text-align: center;
+      z-index: 10;
+      position: relative;
 
-      .backgroundSpan {
-        height: 100%;
-        width: 100%;
-        display: block;
+      &::after {
+        content: '';
         position: absolute;
-        line-height: 2.8em;
-        text-align: center;
-        z-index: 10;
-        .icon {
-          width: 1.3em;
-          height: 1.3em;
-          color: white;
-        }
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        transition: .5s;
+        opacity: 0;
       }
+
+      // &:hover::after {}
+
+      &:active::after {
+        box-shadow: none;
+        opacity: 1;
+        transition: 0s;
+      }
+
+      .icon {
+        width: 1.3em;
+        height: 1.3em;
+        color: white;
+      }
+
     }
+
     .title {
       color: #555666;
       font-size: 0.875em;
       user-select: none;
     }
+
     .home {
-      .backgroundSpan {
-        background-color: #6699cc;
+      background-color: #6699cc;
+
+      &::after {
+        box-shadow: 0 0 6px 10px #6699cc;
       }
     }
+
     .search {
-      .backgroundSpan {
-        background-color: #9999cc;
+      background-color: #9999cc;
+
+      &::after {
+        box-shadow: 0 0 6px 10px #9999cc;
       }
     }
+
     .update {
-      .backgroundSpan {
-        background-color: #cccc00;
+      background-color: #cccc00;
+
+      &::after {
+        box-shadow: 0 0 6px 10px #cccc00;
       }
     }
+
     .hot {
-      .backgroundSpan {
-        background-color: #cc9999;
+      background-color: #cc9999;
+
+      &::after {
+        box-shadow: 0 0 6px 10px #cc9999;
       }
     }
+
     .category {
-      .backgroundSpan {
-        background-color: #6699cc;
+      background-color: #6699cc;
+
+      &::after {
+        box-shadow: 0 0 6px 10px #6699cc;
       }
     }
   }

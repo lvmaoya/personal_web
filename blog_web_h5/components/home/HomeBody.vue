@@ -51,7 +51,7 @@ let welcomeStr = ref("Welcome to Sun's blog!");
   height: 100vh;
   color: black;
   position: relative;
-  z-index: 6;
+  z-index: 21;
   /* display: flex; */
   /* align-items: center; */
   text-align: center;

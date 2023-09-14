@@ -32,76 +32,40 @@ const router = createRouter({
 
           component: () => import("@/views/main/home/HomeView.vue"),
         },
+
         {
-          path: "article",
-          name: "article",
-          redirect: "/main/article/articleList",
-          children: [
-            {
-              path: "articleList",
-              name: "articleList",
-              meta: { name: "文章列表" },
+          path: "articleList",
+          name: "articleList",
+          meta: { name: "文章列表" },
 
-              component: () =>
-                import("@/views/main/article/articleList/ArticleList.vue"),
-            },
-            {
-              path: "editArticle",
-              name: "editArticle",
-              meta: { name: "文章编辑" },
-
-              component: () =>
-                import("@/views/main/article/editArticle/EditArticle.vue"),
-            },
-            {
-              path: "recycleBin",
-              name: "recycleBin",
-              meta: { name: "回收站" },
-
-              component: () =>
-                import("@/views/main/article/recycleBin/RecycleBin.vue"),
-            },
-            {
-              path: "temporaryStorage",
-              name: "temporaryStorage",
-              meta: { name: "暂存箱" },
-
-              component: () =>
-                import(
-                  "@/views/main/article/temporaryStorage/TemporaryStrorage.vue"
-                ),
-            },
-          ],
+          component: () =>
+            import("@/views/main/article/articleList/ArticleList.vue"),
         },
         {
-          path: "user",
-          name: "user",
-          redirect: "/main/user/personalInfo",
-          children: [
-            {
-              path: "personalInfo",
-              name: "personalInfo",
-              meta: { name: "个人简历" },
+          path: "editArticle",
+          name: "editArticle",
+          meta: { name: "文章编辑" },
 
-              component: () =>
-                import("@/views/main/user/personInfo/PersonInfo.vue"),
-            },
-            {
-              path: "systemUser",
-              name: "systemUser",
-              meta: { name: "系统用户" },
-
-              component: () =>
-                import("@/views/main/user/systemUser/SystemUser.vue"),
-            },
-          ],
+          component: () =>
+            import("@/views/main/article/editArticle/EditArticle.vue"),
         },
         {
-          path: "/main/system",
-          name: "system",
-          meta: { name: "年度计划" },
+          path: "recycleBin",
+          name: "recycleBin",
+          meta: { name: "回收站" },
 
-          component: () => import("@/views/main/system/SystemView.vue"),
+          component: () =>
+            import("@/views/main/article/recycleBin/RecycleBin.vue"),
+        },
+        {
+          path: "temporaryStorage",
+          name: "temporaryStorage",
+          meta: { name: "暂存箱" },
+
+          component: () =>
+            import(
+              "@/views/main/article/temporaryStorage/TemporaryStrorage.vue"
+            ),
         },
         {
           path: "/main/category",
@@ -120,7 +84,6 @@ const router = createRouter({
       ],
     },
     {
-      // pathMatch参数名称
       path: "/:pathMatch(.*)*",
       name: "errorPage",
       component: () => import("@/views/notFound/NotFoundView.vue"),

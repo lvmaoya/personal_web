@@ -1,11 +1,11 @@
-li {
-    list-style: none;
-}
-
 ul {
     padding: 0;
     margin: 0;
 }
+
+/* ul>li {
+    list-style: none;
+} */
 
 h1,
 h2,
@@ -30,99 +30,12 @@ a {
     overflow: hidden;
 }
 
-.w {
-    width: 80%;
-    margin: 0 auto;
-    padding-top: 15vh;
-    /* background: #fff; */
-    /* border-bottom: 1.2px solid rgb(189, 188, 188); */
-    position: relative;
-    z-index: 3;
-    min-height: calc(100vh);
-}
 
 #live2d-widget {
     background-color: #fff !important
 }
 
 
-@media screen and (max-width:770px) {
-    .w {
-        width: 95%;
-    }
-
-    #navigationMenu {
-        width: 100% !important;
-    }
-
-    .blogContent>.blogItem {
-        width: 100% !important
-    }
-
-    .search>.searchInput {
-        width: 100%;
-        flex: auto !important
-    }
-
-    .detailArticle {
-        padding: 0 10px;
-        box-sizing: border-box;
-    }
-}
-
-@media screen and (max-width:480px) {
-    /* body {
-        font-size: 14.5px !important;
-    } */
-
-    .comment .drawerActive {
-        width: 100vw !important;
-        min-width: 300px !important
-    }
-
-    .workActicleItem .articleContent .data {
-        flex-direction: column !important;
-    }
-
-    .workActicleItem .articleContent .data .date {
-        margin-top: 5px;
-    }
-
-    .workActicleItem .articleContent .data .date span {
-        font-style: italic;
-    }
-
-    .userNameForm {
-        width: 80% !important;
-    }
-
-    .scrollTop {
-        bottom: 15px !important;
-        right: 10px !important;
-    }
-}
-
-/* 移动端适配 */
-@media screen and (max-width: 980px) {
-    .workActicleItem .articleImage {
-        display: none;
-    }
-}
-
-/* 移动端适配 */
-@media screen and (max-width: 1320px) {
-
-    .blogContent {
-        justify-content: center;
-    }
-}
-
-/* 移动端适配 */
-@media screen and (min-width: 1600px) {
-    body {
-        font-size: 19px !important
-    }
-}
 
 @font-face {
     font-family: 'Josefin Sans';
@@ -132,16 +45,6 @@ a {
 body {
     font-family: 'Josefin Sans', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft Yahei", "WenQuanYi Micro Hei", Arial, Verdana, sans-serif;
 }
-
-/* 解决移动端背景遮不住底部信息 */
-/* .ww {
-    width: 100%;
-    background: #fff;
-    position: relative;
-    z-index: 3;
-    border-bottom: 1.2px solid rgb(189, 188, 188);
-
-} */
 
 /*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
 /* 滚动条整体部分 */
@@ -170,4 +73,19 @@ body::-webkit-scrollbar-corner {
 /* 两个滚动条的交汇处上用于通过拖动调整元素大小的小控件 */
 body::-webkit-resizer {
     display: none;
+}
+
+.none {
+    display: none;
+}
+
+.is-inside-viewport {
+    opacity: 1;
+    transition: opacity .3s linear, transform .3s linear;
+}
+
+.is-outside-viewport {
+    opacity: 0 !important;
+    -ms-transform: translateY(50px) !important;
+    transform: translateY(50px) !important;
 }

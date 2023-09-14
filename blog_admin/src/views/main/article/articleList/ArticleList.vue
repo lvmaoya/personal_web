@@ -1,20 +1,9 @@
 <template>
   <div class="cont articleList">
-    <SearchArticle
-      @searchClick="handleSearchClick"
-      :categoryList="categoryList"
-    ></SearchArticle>
-    <ListContent
-      :articleList="articleList"
-      @table-item-click="hanleTableItemClick"
-    ></ListContent>
-    <PaginationView
-      :total="total"
-      :currentPage="currentPage"
-      :pageSize="pageSize"
-      @current-page-change="handleCurrentPageChange"
-      @page-size-change="handlePageSizeChange"
-    ></PaginationView>
+    <SearchArticle @searchClick="handleSearchClick" :categoryList="categoryList"></SearchArticle>
+    <ListContent :articleList="articleList" @table-item-click="hanleTableItemClick"></ListContent>
+    <PaginationView :total="total" :currentPage="currentPage" :pageSize="pageSize"
+      @current-page-change="handleCurrentPageChange" @page-size-change="handlePageSizeChange"></PaginationView>
   </div>
 </template>
 

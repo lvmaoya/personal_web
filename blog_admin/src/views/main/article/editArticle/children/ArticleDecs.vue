@@ -1,18 +1,13 @@
 <template>
-  <div class="articleDesc">
+  <div class="articleDesc" :class="{ writing: isWriting }">
     <el-form :model="formData">
       <el-row>
         <el-col :span="15">
           <el-row :gutter="20">
             <el-col :span="20">
               <el-form-item label="标题" class="titleFormItem">
-                <el-input
-                  class="title"
-                  v-model="formData.title"
-                  maxlength="20"
-                  show-word-limit
-                /> </el-form-item
-            ></el-col>
+                <el-input class="title" v-model="formData.title" maxlength="20" show-word-limit />
+              </el-form-item></el-col>
             <el-col :span="8">
               <el-form-item label="作者">
                 <el-input v-model="formData.author" disabled />
@@ -25,21 +20,13 @@
             </el-col>
             <el-col :span="8">
               <el-form-item label="文章类别">
-                <el-cascader
-                  v-model="formData.category"
-                  :options="(props.categoryList as Array<CascaderOption>)"
-                  placeholder=" "
-                />
+                <el-cascader v-model="formData.category" :options="(props.categoryList as Array<CascaderOption>)"
+                  placeholder=" " />
               </el-form-item>
             </el-col>
             <el-col :span="24">
               <el-form-item label="摘要" class="descFormItem">
-                <el-input
-                  class="desc"
-                  v-model="formData.description"
-                  maxlength="100"
-                  show-word-limit
-                />
+                <el-input class="desc" v-model="formData.description" maxlength="100" show-word-limit />
               </el-form-item>
             </el-col>
           </el-row>
@@ -48,14 +35,8 @@
           <el-row>
             <el-col>
               <el-form-item label="上传封面">
-                <el-upload
-                  class="avatar-uploader"
-                  :show-file-list="false"
-                  :before-upload="handleUploadCoverImg"
-                  :on-change="handleStart"
-                  action="#"
-                  :auto-upload="false"
-                >
+                <el-upload class="avatar-uploader" :show-file-list="false" :before-upload="handleUploadCoverImg"
+                  :on-change="handleStart" action="#" :auto-upload="false">
                   <img v-if="imageUrl" :src="imageUrl" class="avatar" />
                   <el-icon v-else class="avatar-uploader-icon">
                     <Plus />
@@ -89,12 +70,15 @@
       <el-button type="info" @click="handleClear" size="large">
         清除缓存
       </el-button>
+      <el-button type="info" @click="handleWrite" size="large">
+        正文书写
+      </el-button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { Plus } from "@element-plus/icons-vue";
 
 import { uploadImage } from "@/service/article";
@@ -148,6 +132,10 @@ const formData = ref({
   published_time: "",
   draft_time: "",
 });
+const isWriting = ref(false)
+const handleWrite = () => {
+  isWriting.value = !isWriting.value
+}
 // const defaultCoverImg = [
 //   { src: "http://sunjianxiang.cn:3000/img/xiangmu.jpg", title: "xiangmu" },
 //   {
@@ -220,7 +208,15 @@ watch([formData.value, imageUrl], ([val, imageUrlVal], [pre, imageUrlPre]) => {
 const handleUploadCoverImg = () => {
   return haveAuthority();
 };
-
+onMounted(() => {
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      if (isWriting.value) {
+        isWriting.value = false
+      }
+    }
+  });
+})
 const handleStart = (files: any) => {
   let file = files.raw;
   let formData = new FormData();
@@ -287,54 +283,73 @@ const handleClear = () => {
 <style scoped lang="scss">
 .articleDesc {
   padding: 20px 20px;
+  height: 238px;
+  transition: height 0.5s, padding 0.5s;
+  overflow: hidden;
+
   .el-row {
     user-select: none;
   }
 }
+
+.writing {
+  height: 0;
+  padding: 0 20px;
+}
+
 .titleFormItem {
   padding-bottom: 20px;
 }
+
 // 去除elementplus input 默认边
 .title,
 .desc {
   :deep(.el-input__wrapper) {
-    box-shadow: 0 0 0 0px var(--el-input-border-color, var(--el-border-color))
-      inset;
+    box-shadow: 0 0 0 0px var(--el-input-border-color, var(--el-border-color)) inset;
     cursor: default;
+
     .el-input__inner {
       cursor: default !important;
     }
   }
+
   border-bottom: 1.5px solid gainsboro;
 }
+
 .defaultCoverImg {
   display: flex;
   font-size: var(--el-form-label-font-size);
   color: var(--el-text-color-regular);
+
   .defaultCoverImgTitle {
     min-width: 69px;
     height: 28px;
     line-height: 28px;
   }
+
   .defaultCoverImgContent {
     flex: 1;
     overflow: hidden;
     display: flex;
     flex-wrap: wrap;
+
     a {
       display: block;
       padding: 5px 3px;
+
       &:hover {
         text-decoration: underline;
       }
     }
   }
 }
+
 .avatar-uploader .avatar {
-  width: 284px;
+  width: auto;
   height: 160px;
   display: block;
 }
+
 .avatar-uploader {
   :deep(.el-upload) {
     border: 1px dashed var(--el-border-color);

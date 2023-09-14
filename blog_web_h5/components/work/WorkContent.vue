@@ -1,12 +1,6 @@
-<!--
- * @Author: sun
- * @Date: 2022-12-27 20:22:25
- * @LastEditTime: 2023-01-07 11:00:18
- * @Description: Do not edit
--->
 <template>
   <div class="workActicleContent">
-    <WorkItem v-for="item in props.list" :key="item.article_id" :item="item"></WorkItem>
+    <WorkItem v-for="(item, index) in props.list" :key="item.article_id" :item="item" :index="index"></WorkItem>
   </div>
 </template>
 
@@ -19,12 +13,11 @@ const props = defineProps({
     type: Array<ArticleItemResType>,
   },
 });
-const workActicleContentRef = ref()
 
 </script>
 
 <style scoped lang="scss">
-.WorkActicleContent {
-  padding-bottom: 50px;
+.workActicleContent {
+  min-height: 50vh;
 }
 </style>

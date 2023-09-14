@@ -1,14 +1,13 @@
-export const formatTime = function (date: Date) {
-  let y = date.getFullYear();
-  let m = date.getMonth() + 1;
-  m = m < 10 ? 0 + m : m;
-  let d = date.getDate();
-  d = d < 10 ? 0 + d : d;
-  let h = date.getHours();
-  h = h < 10 ? 0 + h : h;
-  let minute = date.getMinutes();
-  minute = minute < 10 ? 0 + minute : minute;
-  let second = date.getSeconds();
-  second = second < 10 ? 0 + second : second;
-  return y + "-" + m + "-" + d + " " + h + ":" + minute + ":" + second;
+export const formatDate = function (dateString: string) {
+  let date = new Date(dateString.replace(/-/g, "/")); //Wed Jan 02 2019 00:00:00 GMT+0800 (China Standard Time)
+
+  let chinaDate = date.toDateString(); //"Tue, 01 Jan 2019 16:00:00 GMT"
+  //注意：此处时间为中国时区，如果是全球项目，需要转成【协调世界时】（UTC）
+  let globalDate = date.toUTCString(); //"Wed Jan 02 2019"
+
+  //之后的处理是一样的
+  let chinaDateArray = chinaDate.split(" "); //["Wed", "Jan", "02", "2019"]
+
+  let displayDate = `${chinaDateArray[1]} ${chinaDateArray[2]}, ${chinaDateArray[3]}`; //"Jan 02, 2019"
+  return displayDate;
 };

@@ -1,14 +1,5 @@
-<!--
- * @Author: sun
- * @Date: 2022-12-27 19:48:49
- * @LastEditTime: 2023-01-04 09:15:20
- * @Description: Do not edit
--->
 <template>
   <div class="search" @click.stop>
-    <div class="pageCategroy">
-      <slot></slot>
-    </div>
     <div class="searchInput">
       <input type="text" placeholder="Search..." ref="searchInput" v-model="searchData" />
       <button @click="handleSearchBtnClick">
@@ -19,7 +10,6 @@
         </span>
       </button>
     </div>
-    <div class="pageCategroy"></div>
   </div>
 </template>
 
@@ -47,17 +37,14 @@ const handleSearchBtnClick = () => {
 <style lang="scss" scoped>
 .search {
   width: 100%;
+  max-width: 770px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  .pageCategroy {
-    flex: 1;
-    line-height: 1.3em;
-    font-weight: 400;
-  }
+
   .searchInput {
     position: relative;
-    flex: 2;
+    width: 100%;
     height: 45px;
 
     input {
@@ -73,9 +60,11 @@ const handleSearchBtnClick = () => {
       padding: 0 40px 0 18px;
       user-select: none;
     }
+
     input:focus {
       outline: none;
     }
+
     button {
       height: 100%;
       position: absolute;

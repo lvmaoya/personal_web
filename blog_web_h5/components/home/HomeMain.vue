@@ -1,12 +1,12 @@
 <template>
-  <div class="homeMain ">
+  <div class="homeMain">
     <div class="inner">
-      <ul class="content">
+      <ul class="content" v-viewport>
         <li class="homeMainItem" v-for="item in props.thingList" :key="item.article_id"
           @click.stop="handleArticleClick(item.article_id)" ref="homeMainItemRef">
           <a>
-            <div class="image">
-              <img :data-src="item.cover_image" alt="" />
+            <div class="image" :data-src="item.cover_image">
+              <!-- <img :data-src="item.cover_image" alt="" /> -->
             </div>
             <div class="itemTitle">
               <h4>{{ item.title }}</h4>
@@ -49,6 +49,7 @@ onMounted(() => {
   box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 40;
+  padding-top: 50px;
   margin-bottom: 255px;
   background-color: #fff;
 
@@ -62,41 +63,38 @@ onMounted(() => {
       display: block;
       width: 100%;
       height: auto;
-      border-radius: 5px;
+      // border-radius: 5px;
       overflow: hidden;
       background: #fff;
 
       .image {
-        height: calc(24vw * 9 / 16);
-        min-height: 200px;
+        width: 100%;
+        padding-bottom: 100%;
         overflow: hidden;
+        background-color: #4d4d4d;
+        background-repeat: no-repeat;
+        background-size: cover;
       }
 
-      img {
-        width: 100%;
-        height: 100%;
-        transform: scale(1);
-        transition: all 1s ease 0s;
-        user-select: none;
-      }
+      // img {
+      //   display: none;
+      // }
 
       .itemTitle h4 {
         font-size: 1.1em;
         color: black;
-        padding: 1em 0.7em 0.8em 0.7em;
+        padding: 16px 13px 12px 0;
         word-spacing: 2px;
         line-height: 1.2em;
         font-weight: 500;
       }
 
       .description {
-        padding: 0.5em 0.7em 0.8em 0.7em;
+        padding: 5px 13px 12px 0;
 
         p {
           margin: 0;
           width: 100%;
-          font: 16px "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC",
-            "WenQuanYi Micro Hei", sans-serif;
           font-size: 0.875em;
           height: 5em;
           line-height: 1.5em;
@@ -104,15 +102,15 @@ onMounted(() => {
       }
     }
 
-    &:hover .image>img {
-      transform: scale(1.05);
-      transition: all 0.6s ease 0s;
-    }
+    // &:hover .image>img {
+    //   transform: scale(1.05);
+    //   transition: all 0.6s ease 0s;
+    // }
 
-    &:hover a {
-      transition: all 1s ease 0s;
-      box-shadow: 5px 5px 10px #f9f9f9;
-    }
+    // &:hover a {
+    //   transition: all 1s ease 0s;
+    //   box-shadow: 5px 5px 10px #f9f9f9;
+    // }
 
 
     li {
@@ -137,6 +135,7 @@ onMounted(() => {
       li {
         width: calc(50% - 15px);
         margin: 0 30px 80px 0;
+        list-style: none;
 
         &:nth-child(2n) {
           margin-right: 0;
@@ -149,6 +148,7 @@ onMounted(() => {
       li {
         width: calc(33.33% - 20px);
         margin: 0 30px 80px 0;
+        list-style: none;
 
         &:nth-child(2n) {
           margin-right: 30px;

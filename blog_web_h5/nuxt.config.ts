@@ -31,7 +31,7 @@ export default defineNuxtConfig({
       link: [
         {
           rel: "icon",
-          href: "~/public/favicon.ico",
+          href: "/favicon.ico",
         },
       ],
       style: [],
@@ -43,6 +43,7 @@ export default defineNuxtConfig({
       noscript: [{ children: "Javascript is required" }],
       title: "lvmaoya",
     },
+    rootId: "SJX",
     keepalive: true,
   },
   plugins: [{ src: "~/plugins/editor.client.js", mode: "client" }],

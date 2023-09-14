@@ -2,18 +2,20 @@
   <div class="chart">
     <div class="line">
       <div class="title">- Browse Trends</div>
-      <div class="lineChart"></div>
+      <div id="lineChart" ref="lineChartRef"></div>
     </div>
     <div class="pie">
       <div class="title">- Article Category</div>
-      <div class="pieChart"></div>
+      <div id="pieChart" ref="pieChartRef"></div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import * as echarts from "echarts";
-import { onUpdated } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
+import { useStore } from 'vuex'
+
 let props = defineProps({
   pieChartData: {
     type: Object,
@@ -34,98 +36,121 @@ let props = defineProps({
     },
   },
 });
+watch(props, () => {
+  initPieChart()
+  initLineChart()
+}, { deep: true })
+const initPieChart = () => {
+  var chartDom = document.getElementById('pieChart');
+  if (chartDom) {
+    let existInstance = echarts.getInstanceByDom(chartDom);
+    if (existInstance) {
+      if (true) {
+        echarts.dispose(chartDom)
+      }
+    }
+  }
 
-let pieOption = {
-  tooltip: {
-    trigger: "item",
-  },
-  legend: {
-    orient: "vertical",
-    left: "left",
-    top: "7%",
-  },
-
-  series: [
-    {
-      name: "技术文章分布",
-      type: "pie",
-      radius: "50%",
-      data: [],
-      emphasis: {
-        itemStyle: {
-          shadowBlur: 10,
-          shadowOffsetX: 0,
-          shadowColor: "rgba(0, 0, 0, 0.5)",
-        },
+  var myChart = echarts.init(chartDom);
+  let pieOption = {
+    tooltip: {
+      trigger: 'item'
+    },
+    legend: {
+      show: false,
+      top: 'center',
+      left: '0',
+      orient: 'vertical'
+    },
+    series: [
+      {
+        type: 'pie',
+        radius: ['40%', '70%'],
+        // avoidLabelOverlap: false,
+        right: '0%',
+        // label: {
+        //   normal: {
+        //     show: false,
+        //   },
+        // },
+        // labelLine: {
+        //   normal: {
+        //     show: false
+        //   }
+        // },
+        data: props.pieChartData.list
+      }
+    ]
+  };
+  pieOption && myChart.setOption(pieOption);
+}
+const initLineChart = () => {
+  var chartDom = document.getElementById('lineChart');
+  if (chartDom) {
+    let existInstance = echarts.getInstanceByDom(chartDom);
+    if (existInstance) {
+      if (true) {
+        echarts.dispose(chartDom)
+      }
+    }
+  }
+  var myChart = echarts.init(chartDom);
+  let lineOption = {
+    tooltip: {
+      trigger: "axis",
+    },
+    legend: {
+      data: ["Article", "Browse"],
+    },
+    grid: {
+      left: "3%",
+      right: "4%",
+      bottom: "3%",
+      containLabel: true,
+    },
+    xAxis: {
+      type: "category",
+      boundaryGap: false,
+      data: props.lineChartData.monthData,
+    },
+    yAxis: {
+      type: "value",
+    },
+    series: [
+      {
+        name: "Article",
+        type: "line",
+        data: props.lineChartData.article,
       },
-      center: ["62%", "50%"],
-    },
-  ],
-};
-let lineOption = {
-  tooltip: {
-    trigger: "axis",
-  },
-  legend: {
-    data: ["Article", "Browse"],
-  },
-  grid: {
-    left: "3%",
-    right: "4%",
-    bottom: "3%",
-    containLabel: true,
-  },
-  xAxis: {
-    type: "category",
-    boundaryGap: false,
-    data: [
-      "一月",
-      "二月",
-      "三月",
-      "四月",
-      "五月",
-      "六月",
-      "七月",
-      "八月",
-      "九月",
-      "十月",
-      "十一月",
-      "十二月",
+      {
+        name: "Browse",
+        type: "line",
+        data: props.lineChartData.pageview,
+      },
     ],
-  },
-  yAxis: {
-    type: "value",
-  },
-  series: [
-    {
-      name: "Article",
-      type: "line",
-      data: [150, 230, 224, 218, 135, 147, 260, 150, 230, 224, 218, 135],
-    },
-    {
-      name: "Browse",
-      type: "line",
-      data: [15, 23, 22, 21, 13, 17, 26, 15, 23, 22, 21, 15],
-    },
-  ],
-};
+  };
+  lineOption && myChart.setOption(lineOption);
+}
 
-const createChart = (ele: HTMLElement, opt: any) => {
-  const pieChart = echarts.init(ele);
-  opt && pieChart.setOption(opt);
-};
 
-onUpdated(() => {
-  // 获取页面dom需挂载之后获取
-  const pieChartDom = document.querySelector(".pieChart") as HTMLElement;
-  const lineChartDom = document.querySelector(".lineChart") as HTMLElement;
-  pieOption.series[0].data = props.pieChartData.list;
-  lineOption.xAxis.data = props.lineChartData.monthData;
-  lineOption.series[0].data = props.lineChartData.article;
-  lineOption.series[1].data = props.lineChartData.pageview;
-  createChart(pieChartDom, pieOption);
-  createChart(lineChartDom, lineOption);
-});
+
+const store = useStore()
+const isCollapse = computed(() => store.state.isCollapse)
+watch(isCollapse, () => {
+  setTimeout(() => {
+    initPieChart()
+    initLineChart()
+  }, 1000);
+})
+
+onMounted(() => {
+  initPieChart()
+  initLineChart()
+  window.addEventListener('resize', () => {
+    initPieChart()
+    initLineChart()
+  })
+})
 </script>
 
 <style scoped lang="scss">
@@ -135,22 +160,28 @@ onUpdated(() => {
   justify-content: space-between;
   overflow: hidden;
 }
+
 .pie {
-  padding: 10px;
+  padding: 10px 0 10px 10px;
   width: 40%;
+  border-radius: 13px;
   background-color: var(--light_blue);
 }
+
 .line {
   padding: 10px;
   margin-right: 10px;
   width: 60%;
+  border-radius: 13px;
   background-color: var(--light_yellow);
 }
-.pieChart,
-.lineChart {
+
+#pieChart,
+#lineChart {
   width: 100%;
-  height: 300px;
+  height: 350px;
 }
+
 .title {
   padding: 5px;
   font-size: 1.1em;

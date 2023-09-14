@@ -46,7 +46,7 @@ VMdPreview.use(githubTheme, {
 
 import App from "./App.vue";
 import router from "./router";
-
+import store from "@/stores";
 import "@/assets/css/reset.css";
 // animate动画
 import "animate.css";
@@ -56,6 +56,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
 }
 app.use(ElementPlus);
+app.use(store);
 
 app.use(VueMarkdownEditor);
 app.use(VMdPreview);

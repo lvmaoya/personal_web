@@ -1,9 +1,3 @@
-<!--
- * @Author: sun
- * @Date: 2022-12-23 21:58:29
- * @LastEditTime: 2023-01-04 08:47:06
- * @Description: Do not edit
--->
 <template>
   <div class="content">
     <div class="inner">
@@ -16,7 +10,6 @@
     <Pagination @currentPageChange="handleCurrentPageChange" :current-page="currentPage" :total="total" :size="size">
     </Pagination>
   </div>
-  <Footer></Footer>
 </template>
 
 <script lang="ts" setup>
@@ -69,11 +62,10 @@ const handleSearchBtnClick = async (searchData: searchConfigType) => {
   margin-bottom: 258px;
   background-color: #fff;
   position: relative;
-  z-index: 6;
+  z-index: 21;
 }
 
 .searchContent {
-  margin-bottom: 11vh;
-  padding-top: 19vh;
+  padding: 25vh 0 20vh 0;
 }
 </style>

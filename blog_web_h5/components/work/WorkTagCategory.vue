@@ -1,18 +1,7 @@
-<!--
- * @Author: sun
- * @Date: 2023-01-02 09:28:08
- * @LastEditTime: 2023-01-04 08:46:00
- * @Description: Do not edit
--->
 <template>
   <div class="category">
-    <a
-      v-for="item in categoryList"
-      :key="item.category_id"
-      :class="bg[random() - 1].className"
-      @click.stop="handleCategoryClick(item.category_id)"
-      ># {{ item.category_name }} ({{ item.count ?? 0 }})</a
-    >
+    <a v-for="item in categoryList" :key="item.category_id" :class="bg[random() - 1].className"
+      @click.stop="handleCategoryClick(item.category_id)"># {{ item.category_name }} ({{ item.count ?? 0 }})</a>
   </div>
 </template>
 
@@ -43,9 +32,10 @@ categoryList.value = (await getArticleCategoryList({ category: fatherPageCategor
 
 <style scoped lang="scss">
 .category {
-  width: 60%;
+  width: 100%;
+  max-width: 770px;
   margin: 0 auto;
-  padding: 50px 0;
+  padding: 75px 0;
   text-align: center;
 
   a {
@@ -56,9 +46,9 @@ categoryList.value = (await getArticleCategoryList({ category: fatherPageCategor
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
     letter-spacing: 0;
-    border-radius: 15px;
     -webkit-box-shadow: 0 1px 4px rgb(0 0 0 / 4%);
     box-shadow: 0 1px 4px rgb(0 0 0 / 4%);
+    border-radius: 15px;
     color: white;
     user-select: none;
     cursor: pointer;
@@ -67,15 +57,19 @@ categoryList.value = (await getArticleCategoryList({ category: fatherPageCategor
   .bg-red {
     background-color: #eb5055;
   }
+
   .bg-blue {
     background-color: #6699cc;
   }
+
   .bg-puple {
     background-color: #bc99c4;
   }
+
   .bg-yellow {
     background-color: #cccc00;
   }
+
   .bg-pink {
     background-color: #cc9999;
   }
@@ -83,6 +77,7 @@ categoryList.value = (await getArticleCategoryList({ category: fatherPageCategor
   .bg-lightYellow {
     background-color: #f9bb3c;
   }
+
   .bg-green {
     background-color: #46c47c;
   }

@@ -25,13 +25,16 @@ const systemStatistics = inject<systemStatisticsType>(
 <style scoped lang="scss">
 .welcome {
   margin-top: 10px;
+  border-radius: 13px;
   background-color: var(--light_blue);
+
   .textContent {
-    padding: 0 23px 0px 23px;
+    padding: 13px 23px 0px 23px;
     text-indent: 2em;
     line-height: 1.7em;
     font-size: 14px;
   }
+
   .title {
     padding: 5px;
     font-size: 1.1em;
