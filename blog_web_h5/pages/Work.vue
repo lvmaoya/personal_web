@@ -10,7 +10,7 @@
         </div>
       </div>
       <WorkContent :list="(articleList as ArticleListResType)?.list" v-if="!isCategoryVisible"></WorkContent>
-      <NoData v-if="total === 0"></NoData>
+      <NoData v-if="total === 0 && !isCategoryVisible"></NoData>
     </div>
     <Pagination v-if="!isCategoryVisible" @current-page-change="handleCurrentPageChange" :current-page="currentPage"
       :total="total" :size="size"></Pagination>

@@ -110,8 +110,9 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-top: 30px;
+  // padding-top: 30px;
   margin-bottom: 200px;
+  margin-top: -59vh;
 
   span {
     color: gray;
