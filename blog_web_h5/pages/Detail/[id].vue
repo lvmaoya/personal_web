@@ -143,6 +143,9 @@ const getCommentNum = (value: number) => {
       font-size: 13.5px;
       text-align: left;
       background: #fff;
+      height: 50vh;
+      padding-left: 5px;
+      overflow-y: scroll;
 
       &>ul {
         position: relative;
