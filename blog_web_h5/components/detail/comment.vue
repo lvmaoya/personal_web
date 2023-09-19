@@ -116,6 +116,7 @@ onMounted(() => {
     userNameRef.value.disabled = true
     emailRef.value.disabled = true
   }
+  
 })
 const handleCommentClick = async () => {
   // 检测为空不，检测是否有用户名

@@ -19,7 +19,8 @@
       <div class="navContent">
         <div class="navigation">
           <ul>
-            <li v-for="anchor in v_titles" :class="{ level1: anchor.indent == 0, level2: anchor.indent == 1 }"
+            <li v-for="anchor in v_titles"
+              :class="{ level1: anchor.indent == 0, level2: anchor.indent == 1, level3: anchor.indent == 2 }"
               @click="handleAnchorClick(anchor)">
               <a style="cursor: pointer">{{ anchor.title }}</a>
             </li>
@@ -104,7 +105,32 @@ const getPreferNum = async () => {
   pageview.value = dianZanNumData.data.pageview;
 };
 await getPreferNum()
+onMounted(() => {
+  const changePV = debounce(async () => {
+    await changePVData({ id: article_id });
+  }, 0);
+  // 访问数量控制
+  const pvArticle = ref<Array<number>>([]);
 
+  pvArticle.value = cookie.returnArrCookie("pvArticle") as number[];
+  const changePageView = () => {
+    if (pvArticle.value.length === 0) {
+      changePV();
+      cookie.setArrCookie("pvArticle", article_id, 1);
+      getPreferNum();
+    } else {
+      if (pvArticle.value.includes(article_id)) {
+        return getPreferNum();
+      } else {
+        changePV();
+        cookie.setArrCookie("pvArticle", article_id, 1);
+        getPreferNum();
+      }
+    }
+  };
+  // // 正确的做法是需要保证changepageview在前面，getprefernum在后面
+  changePageView();
+})
 const getCommentNum = (value: number) => {
   commentNum.value = value
 }
