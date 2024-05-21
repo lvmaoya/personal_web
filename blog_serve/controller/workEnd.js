@@ -379,7 +379,7 @@ exports.uploadQiqiu = (req, res, next) => {
                 code: 0,
                 message: "success",
                 data: {
-                  url: "http://qn.sunjianxiang.cn/" + key,
+                  url: "http://qn.lvmaoya.cn/" + key,
                 },
               });
             });
