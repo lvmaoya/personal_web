@@ -111,7 +111,7 @@ exports.getArticleListDB = (req, res) => {
   const params =
     "SELECT SQL_CALC_FOUND_ROWS * FROM blog where status = " +
     status +
-    " LIMIT " +
+    " ORDER BY published_time DESC LIMIT " +
     startItem +
     "," +
     pageSize +

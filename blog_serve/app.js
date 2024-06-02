@@ -13,8 +13,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-const https = require("https");
-// const http = require("http");
+// const https = require("https");
+const http = require("http");
 const fs = require("fs");
 
 // Configuare https
@@ -33,8 +33,8 @@ app.use(router);
 app.use(errorHandler());
 
 // https需要补充相应pem文件
-const server = https.createServer(httpsOption, app);
-// const server = http.createServer(app);
+// const server = https.createServer(httpsOption, app);
+const server = http.createServer(app);
 server.listen(3002, () => {
   console.log("server is running");
 });

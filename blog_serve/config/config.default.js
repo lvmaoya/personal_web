@@ -5,10 +5,10 @@
  * @Description: Do not edit
  */
 const db = {
-  host: "localhost",
-  user: "root",
+  host: "101.43.54.84",
+  user: "lvmaoya",
   password: "root",
-  database: "personal_web",
+  database: "personal_web_test",
   charset: "UTF8",
   multipleStatements: true,
   connectionLimit: 20,
