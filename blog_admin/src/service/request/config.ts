@@ -9,7 +9,7 @@ const TIME_OUT = 10000;
 
 if (import.meta.env.MODE === "development") {
   // BASE_URL = "http://127.0.0.1:4523/m1/1770943-0-default";
-  BASE_URL = "https://lvmaoya.cn:3002";
+  BASE_URL = "http://localhost:3002";
 } else if (import.meta.env.MODE === "production") {
   BASE_URL = "https://lvmaoya.cn:3002";
 } else {

@@ -247,10 +247,7 @@ const handlePublish = () => {
   } else if (formData.value.description === "") {
     editWarn("请为您的文章添加必要描述");
     return;
-  } else if (formData.value.cover_image === "") {
-    editWarn("请为您的文章添加封面");
-    return;
-  }
+  } 
   formData.value.published_time = new Date().toLocaleString();
   formData.value.status = 0;
   emit("publish", formData);

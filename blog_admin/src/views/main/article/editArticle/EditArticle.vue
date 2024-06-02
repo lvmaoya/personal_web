@@ -6,10 +6,24 @@
 -->
 <template>
   <div class="editArticle">
-    <ArticleDecs @publish="handlePublish" @draft="handleDraft" @clear="handleClear" :categoryList="categoryList"
-      :isPublish="isPublish" :backFormData="backFormData" ref="articleDesc"></ArticleDecs>
-    <v-md-editor v-model="text" height="1000px" :disabled-menus="[]" @upload-image="handleUploadImage"
-      @blur="handleEditorBlur"></v-md-editor>
+    <ArticleDecs
+      @publish="handlePublish"
+      @draft="handleDraft"
+      @clear="handleClear"
+      :categoryList="categoryList"
+      :isPublish="isPublish"
+      :backFormData="backFormData"
+      ref="articleDesc"
+    ></ArticleDecs>
+    <v-md-editor
+      v-model="text"
+      height="1000px"
+      :disabled-menus="[]"
+      @upload-image="handleUploadImage"
+      left-toolbar="undo redo clear | emoji h bold italic strikethrough quote | ul ol table hr | link image code"
+      @blur="handleEditorBlur"
+      mode="edit"
+    ></v-md-editor>
   </div>
 </template>
 
@@ -27,6 +41,7 @@ import { ElNotification } from "element-plus";
 import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import ArticleDecs from "./children/ArticleDecs.vue";
+
 let backFormData = ref({
   article_id: 0,
   title: "",

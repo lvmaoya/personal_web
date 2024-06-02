@@ -16,10 +16,12 @@ import "@kangc/v-md-editor/lib/style/base-editor.css";
 import vuepressTheme from "@kangc/v-md-editor/lib/theme/vuepress.js";
 import "@kangc/v-md-editor/lib/theme/style/vuepress.css";
 import Prism from "prismjs";
+import createEmojiPlugin from '@kangc/v-md-editor/lib/plugins/emoji/index';
+import '@kangc/v-md-editor/lib/plugins/emoji/emoji.css';
 VueMarkdownEditor.use(vuepressTheme, {
   Prism,
 });
-
+VueMarkdownEditor.use(createEmojiPlugin());
 // v-md-editor
 import VMdPreview from "@kangc/v-md-editor/lib/preview";
 import "@kangc/v-md-editor/lib/style/preview.css";
@@ -35,11 +37,13 @@ import css from "highlight.js/lib/languages/css";
 import less from "highlight.js/lib/languages/less";
 import javascript from "highlight.js/lib/languages/javascript";
 import vbscriptHtml from "highlight.js/lib/languages/vbscript-html";
+import dart from "highlight.js/lib/languages/dart";
 hljs.registerLanguage("json", json);
 hljs.registerLanguage("css", css);
 hljs.registerLanguage("less", less);
 hljs.registerLanguage("javascript", javascript);
 hljs.registerLanguage("vbscriptHtml", vbscriptHtml);
+hljs.registerLanguage("dart", dart);
 VMdPreview.use(githubTheme, {
   Hljs: hljs,
 });
