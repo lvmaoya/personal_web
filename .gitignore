@@ -17,3 +17,5 @@ dist
 */dist
 
 ./blog_serve/https
+
+.DS_Store
